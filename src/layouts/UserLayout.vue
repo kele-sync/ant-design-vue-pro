@@ -1,25 +1,25 @@
 <template>
-
   <div id="userLayout" :class="['user-layout-wrapper', isMobile && 'mobile']">
     <div class="container">
+
       <div class="user-layout-lang">
         <select-lang class="select-lang-trigger" />
       </div>
       <div class="user-layout-content">
+
         <div class="top">
           <div class="header">
             <a href="/">
-              <img src="~@/assets/logo.svg" class="logo" alt="logo">
-              <span class="title">Ant Design</span>
+              <img src="~@/assets/logo.svg" class="logo" alt="logo" />
+              <span class="title">科勒销售系统</span>
             </a>
           </div>
           <div class="desc">
-            {{ $t('layouts.userLayout.title') }}
+            销售获客小工具
           </div>
         </div>
 
         <router-view />
-
         <div class="footer">
           <div class="links">
             <a href="_self">帮助</a>
@@ -31,6 +31,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </template>
@@ -38,7 +39,6 @@
 <script>
 import { deviceMixin } from '@/store/device-mixin'
 import SelectLang from '@/components/SelectLang'
-
 export default {
   name: 'UserLayout',
   components: {
@@ -70,8 +70,6 @@ export default {
   .container {
     width: 100%;
     min-height: 100%;
-    background: #f0f2f5 url(~@/assets/background.svg) no-repeat 50%;
-    background-size: 100%;
     //padding: 50px 0 84px;
     position: relative;
 
@@ -122,7 +120,7 @@ export default {
 
           .title {
             font-size: 33px;
-            color: rgba(0, 0, 0, .85);
+            color: rgba(0, 0, 0, 0.85);
             font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif;
             font-weight: 600;
             position: relative;
@@ -172,7 +170,6 @@ export default {
     a {
       text-decoration: none;
     }
-
   }
 }
 </style>

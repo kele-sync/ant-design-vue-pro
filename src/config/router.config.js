@@ -13,8 +13,184 @@ export const asyncRouterMap = [
     name: 'index',
     component: BasicLayout,
     meta: { title: 'menu.home' },
-    redirect: '/dashboard/workplace',
+    redirect: '/overview/clients',
     children: [
+      {
+        path: '/overview',
+        name: 'overview',
+        redirect: '/overview/clients',
+        component: RouteView,
+        meta: { title: '客户广场', keepAlive: true, icon: bxAnaalyse, permission: ['overview'] },
+        children: [
+          {
+            path: '/overview/clients',
+            name: 'clients',
+            component: () => import('@/views/overview/Clients'),
+            meta: { title: '公司黄页', keepAlive: false, permission: ['overview'] }
+          },
+          {
+            path: '/overview/salesman',
+            name: 'salesman',
+            component: () => import('@/views/overview/Salesman'),
+            meta: { title: '采购人员', keepAlive: false, permission: ['overview'] }
+          },
+          {
+            path: '/overview/board',
+            name: 'board',
+            component: () => import('@/views/overview/Board'),
+            meta: { title: '需求公告板', keepAlive: false, permission: ['overview'] }
+          }
+
+        ]
+      },
+      {
+        path: '/own',
+        name: 'own',
+        redirect: '/own/clients',
+        component: RouteView,
+        meta: { title: '我的生意', keepAlive: true, icon: bxAnaalyse, permission: ['overview'] },
+        children: [
+          {
+            path: '/own/salesman',
+            name: 'salesman',
+            component: () => import('@/views/overview/Clients'),
+            meta: { title: '收藏客户', keepAlive: false, permission: ['overview'] }
+          },
+          {
+            path: '/own/card',
+            name: 'card',
+            component: () => import('@/views/business/Card'),
+            meta: { title: '对外名片', keepAlive: false, permission: ['overview'] }
+          },
+          {
+            path: '/own/needs',
+            name: 'needs',
+            component: () => import('@/views/business/Needs'),
+            meta: { title: '我的需求', keepAlive: false, permission: ['overview'] }
+          },
+          {
+            path: '/own/partner',
+            name: 'partner',
+            component: () => import('@/views/business/Partner'),
+            meta: { title: '合作伙伴', keepAlive: false, permission: ['overview'] }
+          },
+          {
+            path: '/own/board',
+            name: 'board',
+            component: () => import('@/views/overview/Clients'),
+            meta: { title: '站内信', keepAlive: false, permission: ['overview'] }
+          }
+
+        ]
+      },
+      {
+        path: '/analyze',
+        name: 'analyze',
+        redirect: '/analyze/clients',
+        component: RouteView,
+        meta: { title: '市场分析', keepAlive: true, icon: bxAnaalyse, permission: ['overview'] },
+        children: [
+          {
+            path: '/own/salesman',
+            name: 'salesman',
+            component: () => import('@/views/overview/Clients'),
+            meta: { title: '供需地图', keepAlive: false, permission: ['overview'] }
+          },
+          {
+            path: '/own/clients',
+            name: 'clients',
+            component: () => import('@/views/overview/Clients'),
+            meta: { title: '行业曲线', keepAlive: false, permission: ['overview'] }
+          }
+
+        ]
+      },
+      {
+        path: '/tools',
+        name: 'tools',
+        redirect: '/analyze/clients',
+        component: RouteView,
+        meta: { title: '小工具', keepAlive: true, icon: bxAnaalyse, permission: ['overview'] },
+        children: [
+          {
+            path: '/own/salesman',
+            name: 'salesman',
+            component: () => import('@/views/overview/Clients'),
+            meta: { title: '二维码制作', keepAlive: false, permission: ['overview'] }
+          },
+          {
+            path: '/own/salesman',
+            name: 'salesman',
+            component: () => import('@/views/overview/Clients'),
+            meta: { title: '待办事项', keepAlive: false, permission: ['overview'] }
+          }
+        ]
+      },
+      {
+        path: '/account',
+        component: RouteView,
+        redirect: '/account/center',
+        name: 'account',
+        meta: { title: '个人设置', icon: 'user', keepAlive: true, permission: ['user'] },
+        children: [
+          {
+            path: '/account/center',
+            name: 'center',
+            component: () => import('@/views/account/center'),
+            meta: { title: 'menu.account.center', keepAlive: true, permission: ['user'] }
+          },
+          {
+            path: '/account/settings',
+            name: 'settings',
+            component: () => import('@/views/account/settings/Index'),
+            meta: { title: 'menu.account.settings', hideHeader: true, permission: ['user'] },
+            redirect: '/account/settings/basic',
+            hideChildrenInMenu: true,
+            children: [
+              {
+                path: '/account/settings/basic',
+                name: 'BasicSettings',
+                component: () => import('@/views/account/settings/BasicSetting'),
+                meta: { title: 'account.settings.menuMap.basic', hidden: true, permission: ['user'] }
+              },
+              {
+                path: '/account/settings/security',
+                name: 'SecuritySettings',
+                component: () => import('@/views/account/settings/Security'),
+                meta: {
+                  title: 'account.settings.menuMap.security',
+                  hidden: true,
+                  keepAlive: true,
+                  permission: ['user']
+                }
+              },
+              {
+                path: '/account/settings/custom',
+                name: 'CustomSettings',
+                component: () => import('@/views/account/settings/Custom'),
+                meta: { title: 'account.settings.menuMap.custom', hidden: true, keepAlive: true, permission: ['user'] }
+              },
+              {
+                path: '/account/settings/binding',
+                name: 'BindingSettings',
+                component: () => import('@/views/account/settings/Binding'),
+                meta: { title: 'account.settings.menuMap.binding', hidden: true, keepAlive: true, permission: ['user'] }
+              },
+              {
+                path: '/account/settings/notification',
+                name: 'NotificationSettings',
+                component: () => import('@/views/account/settings/Notification'),
+                meta: {
+                  title: 'account.settings.menuMap.notification',
+                  hidden: true,
+                  keepAlive: true,
+                  permission: ['user']
+                }
+              }
+            ]
+          }
+        ]
+      },
       // dashboard
       {
         path: '/dashboard',

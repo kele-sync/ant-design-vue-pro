@@ -1,3 +1,4 @@
+
 // with polyfills
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
@@ -14,6 +15,7 @@ import themePluginConfig from '../config/themePluginConfig'
 // mock
 // WARNING: `mockjs` NOT SUPPORT `IE` PLEASE DO NOT USE IN `production` ENV.
 import './mock'
+import './assets/styles/common.css'
 
 import bootstrap from './core/bootstrap'
 import './core/lazy_use' // use lazy load components
