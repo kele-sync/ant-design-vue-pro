@@ -32,13 +32,13 @@ export const asyncRouterMap = [
             path: '/overview/salesman',
             name: 'salesman',
             component: () => import('@/views/overview/Salesman'),
-            meta: { title: '采购人员', keepAlive: false, permission: ['overview'] }
+            meta: { title: '意向客户', keepAlive: false, permission: ['overview'] }
           },
           {
             path: '/overview/board',
             name: 'board',
             component: () => import('@/views/overview/Board'),
-            meta: { title: '需求公告板', keepAlive: false, permission: ['overview'] }
+            meta: { title: '待开发客户', keepAlive: false, permission: ['overview'] }
           }
 
         ]
