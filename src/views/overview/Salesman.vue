@@ -1,23 +1,23 @@
 <template>
   <page-header-wrapper>
-    <!-- <a-card :bordered="false">
+    <a-card :bordered="false">
       <a-row>
         <a-col :sm="8" :xs="24">
-          <info title="我的待办" value="8个任务" :bordered="true" />
+          <info title="意向客户数量" value="8个" :bordered="true" />
         </a-col>
         <a-col :sm="8" :xs="24">
-          <info title="本周任务平均处理时间" value="32分钟" :bordered="true" />
+          <info title="尚未合作数量" value="32个" :bordered="true" />
         </a-col>
         <a-col :sm="8" :xs="24">
-          <info title="已沟通人数" value="24个" />
+          <info title="已合作数量" value="24个" />
         </a-col>
       </a-row>
-    </a-card> -->
+    </a-card>
 
     <a-card
       style="margin-top: 24px"
       :bordered="false">
-      <div class="table-page-search-wrapper">
+      <!-- <div class="table-page-search-wrapper">
         <a-form layout="inline">
           <a-row :gutter="48">
             <a-col :md="8" :sm="24">
@@ -36,12 +36,15 @@
             </a-col>
           </a-row>
         </a-form>
-      </div>
+      </div> -->
       <div slot="extra">
+        <a-button style="margin-right:20px" type="primary">手动添加</a-button>
+        <a-button style="margin-right:20px" type="primary">批量导出</a-button>
+        <a-button style="margin-right:20px" type="primary">批量导入</a-button>
         <a-radio-group v-model="status">
           <a-radio-button value="all">全部</a-radio-button>
-          <a-radio-button value="processing">已关注</a-radio-button>
-          <a-radio-button value="waiting">未关注</a-radio-button>
+          <a-radio-button value="processing">已合作</a-radio-button>
+          <a-radio-button value="waiting">未合作</a-radio-button>
         </a-radio-group>
         <a-input-search placeholder="请输入公司名字" style="margin-left: 16px; width: 272px;" />
       </div>
@@ -53,29 +56,39 @@
             <a slot="title">{{ item.title }}</a>
           </a-list-item-meta>
           <div slot="actions">
-            <a @click="edit(item)">查看详情</a>
+            <a @click="edit(item)">扫码打电话</a>
           </div>
           <div slot="actions">
             <a-dropdown>
               <a-menu slot="overlay">
-                <a-menu-item><a>关注</a></a-menu-item>
-                <a-menu-item><a>分享二维码</a></a-menu-item>
+                <a-menu-item><a>查看详情</a></a-menu-item>
+                <a-menu-item><a>转至待开发客户</a></a-menu-item>
+                <a-menu-item><a>标记已合作</a></a-menu-item>
+                <a-menu-item><a>删除客户</a></a-menu-item>
               </a-menu>
               <a>更多<a-icon type="down"/></a>
             </a-dropdown>
           </div>
           <div class="list-content">
             <div class="list-content-item">
-              <span>采购人</span>
+              <span>联系人</span>
               <p>{{ item.owner }}</p>
             </div>
             <div class="list-content-item">
-              <span>上次登录时间</span>
+              <span>上次沟通时间</span>
               <p>{{ item.endAt }}</p>
             </div>
             <div class="list-content-item">
-              <a-progress :percent="item.progress.value" :status="!item.progress.status ? null : item.progress.status" style="width: 180px" />
+              <span>沟通次数</span>
+              <p>{{ item.count||0 }}次</p>
             </div>
+            <div class="list-content-item">
+              <span>联系电话</span>
+              <p>15151317575</p>
+            </div>
+            <!-- <div class="list-content-item">
+              <a-progress :percent="item.progress.value" :status="!item.progress.status ? null : item.progress.status" style="width: 180px" />
+            </div> -->
           </div>
         </a-list-item>
       </a-list>
@@ -90,41 +103,45 @@ import Info from '../list/components/Info'
 
 const data = []
 data.push({
-  title: '常州天正物联网',
+  title: '漳县祁连山水泥有限公司',
   avatar: 'https://gw.alipayobjects.com/zos/rmsportal/WdGqmHpayyMjiEhcKoVE.png',
-  description: '这是简介',
-  owner: '付晓晓',
+  description: '甘肃省兰州市安宁区西路街道九州通西路21号第2层西区',
+  owner: '高国峻',
   endAt: '2018-07-26 22:44',
+  count: 3,
   progress: {
     value: 90
   }
 })
 data.push({
-  title: '常州天正物联网',
+  title: '漳县祁连山水泥有限公司',
   avatar: 'https://gw.alipayobjects.com/zos/rmsportal/WdGqmHpayyMjiEhcKoVE.png',
-  description: '这是简介',
-  owner: '付晓晓',
+  description: '甘肃省兰州市安宁区西路街道九州通西路21号第2层西区',
+  owner: '高国峻',
   endAt: '2018-07-26 22:44',
+  count: 3,
   progress: {
     value: 90
   }
 })
 data.push({
-  title: '常州天正物联网',
+  title: '漳县祁连山水泥有限公司',
   avatar: 'https://gw.alipayobjects.com/zos/rmsportal/WdGqmHpayyMjiEhcKoVE.png',
-  description: '这是简介',
-  owner: '付晓晓',
+  description: '甘肃省兰州市安宁区西路街道九州通西路21号第2层西区',
+  owner: '高国峻',
   endAt: '2018-07-26 22:44',
+  count: 3,
   progress: {
     value: 90
   }
 })
 data.push({
-  title: '常州天正物联网',
+  title: '漳县祁连山水泥有限公司',
   avatar: 'https://gw.alipayobjects.com/zos/rmsportal/WdGqmHpayyMjiEhcKoVE.png',
-  description: '这是简介',
-  owner: '付晓晓',
+  description: '甘肃省兰州市安宁区西路街道九州通西路21号第2层西区',
+  owner: '高国峻',
   endAt: '2018-07-26 22:44',
+  count: 3,
   progress: {
     value: 90
   }

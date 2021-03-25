@@ -29,16 +29,16 @@ export const asyncRouterMap = [
             meta: { title: '公司黄页', keepAlive: false, permission: ['overview'] }
           },
           {
-            path: '/overview/salesman',
-            name: 'salesman',
-            component: () => import('@/views/overview/Salesman'),
-            meta: { title: '意向客户', keepAlive: false, permission: ['overview'] }
-          },
-          {
             path: '/overview/board',
             name: 'board',
             component: () => import('@/views/overview/Board'),
             meta: { title: '待开发客户', keepAlive: false, permission: ['overview'] }
+          },
+          {
+            path: '/overview/salesman',
+            name: 'salesman',
+            component: () => import('@/views/overview/Salesman'),
+            meta: { title: '意向客户', keepAlive: false, permission: ['overview'] }
           }
 
         ]
@@ -46,15 +46,15 @@ export const asyncRouterMap = [
       {
         path: '/own',
         name: 'own',
-        redirect: '/own/clients',
+        redirect: '/own/calendar',
         component: RouteView,
         meta: { title: '我的生意', keepAlive: true, icon: bxAnaalyse, permission: ['overview'] },
         children: [
           {
-            path: '/own/salesman',
-            name: 'salesman',
-            component: () => import('@/views/overview/Clients'),
-            meta: { title: '收藏客户', keepAlive: false, permission: ['overview'] }
+            path: '/own/c alendar',
+            name: 'Calendar',
+            component: () => import('@/views/business/Calendar'),
+            meta: { title: '工作日历', keepAlive: false, permission: ['overview'] }
           },
           {
             path: '/own/card',

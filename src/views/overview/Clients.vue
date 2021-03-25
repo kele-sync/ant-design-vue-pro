@@ -58,13 +58,23 @@
           </a-row>
         </a-form>
       </div>
+      <div class="table-operator">
+        <a-dropdown v-if="selectedRowKeys.length > 0">
+          <a-menu slot="overlay">
+            <a-menu-item key="1"><a-icon type="delete" />添加至待开发客户</a-menu-item>
+          </a-menu>
+          <a-button style="margin-left: 8px">
+            批量操作 <a-icon type="down" />
+          </a-button>
+        </a-dropdown>
+      </div>
       <s-table
         ref="table"
         size="default"
         rowKey="key"
         :columns="columns"
         :data="loadData"
-        :alert="false"
+        :alert="true"
         :rowSelection="rowSelection"
         showPagination="auto"
       >
@@ -82,7 +92,22 @@
           <template>
             <a @click="handleEdit(record)">查看详情</a>
             <a-divider type="vertical" />
-            <a @click="handleSub(record)">收藏</a>
+            <a-dropdown>
+              <a class="ant-dropdown-link" @click="e => e.preventDefault()">
+                更多 <a-icon type="down" />
+              </a>
+              <a-menu slot="overlay">
+                <a-menu-item>
+                  <a href="javascript:;">添加至待开发客户</a>
+                </a-menu-item>
+                <a-menu-item>
+                  <a href="javascript:;">添加至意向客户</a>
+                </a-menu-item>
+                <a-menu-item>
+                  <a href="javascript:;">查看二维码</a>
+                </a-menu-item>
+              </a-menu>
+            </a-dropdown>
           </template>
         </span>
       </s-table>
@@ -123,23 +148,16 @@ const columns = [
     scopedSlots: { customRender: 'description' }
   },
   {
-    title: '单位性质',
+    title: '备案人',
     dataIndex: 'callNo',
     sorter: true,
-    needTotal: true,
     customRender: (text) => text + ' 次'
   },
   {
     title: '网站名称',
     dataIndex: 'callN',
     sorter: true,
-    needTotal: true,
     customRender: (text) => text + ' 次'
-  },
-  {
-    title: '网站备案/许可证号',
-    dataIndex: 'status',
-    scopedSlots: { customRender: 'status' }
   },
   {
     title: '更新时间',
@@ -147,9 +165,13 @@ const columns = [
     sorter: true
   },
   {
+    title: '备案时间',
+    dataIndex: 'updatedAt',
+    sorter: true
+  },
+  {
     title: '操作',
     dataIndex: 'action',
-    width: '150px',
     scopedSlots: { customRender: 'action' }
   }
 ]

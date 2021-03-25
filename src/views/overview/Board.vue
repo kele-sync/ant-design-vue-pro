@@ -1,10 +1,5 @@
 <template>
   <page-header-wrapper>
-    <a-alert
-      message="若您要发布需求，请先提交企业验证信息，验证成功后即可前往:我的生意>发布需求 进行相关操作"
-      banner
-      closable
-    />
     <a-card :bordered="false">
       <div class="table-page-search-wrapper">
         <a-form layout="inline">
@@ -23,54 +18,72 @@
                 </a-select>
               </a-form-item>
             </a-col>
-            <template v-if="advanced">
-              <a-col :md="8" :sm="24">
-                <a-form-item label="单位性质">
-                  <a-input-number v-model="queryParam.callNo" style="width: 100%"/>
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="单位名称">
-                  <a-input v-model="queryParam.id" placeholder=""/>
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="更新日期">
-                  <a-date-picker v-model="queryParam.date" style="width: 100%" placeholder="请输入更新日期"/>
-                </a-form-item>
-              </a-col>
-              <!-- <a-col :md="8" :sm="24">
-                <a-form-item label="网站状态">
-                  <a-select v-model="queryParam.useStatus" placeholder="请选择" default-value="0">
-                    <a-select-option value="0">全部</a-select-option>
-                    <a-select-option value="1">关闭</a-select-option>
-                    <a-select-option value="2">运行中</a-select-option>
-                  </a-select>
-                </a-form-item>
-              </a-col> -->
 
-            </template>
-            <a-col :md="!advanced && 8 || 24" :sm="24">
+            <a-col :md="8" :sm="24">
               <span class="table-page-search-submitButtons" :style="advanced && { float: 'right', overflow: 'hidden' } || {} ">
                 <a-button type="primary" @click="$refs.table.refresh(true)">查询</a-button>
-                <a-button style="margin-left: 8px" @click="() => this.queryParam = {}">重置</a-button>
-                <a @click="toggleAdvanced" style="margin-left: 8px">
-                  {{ advanced ? '收起' : '展开' }}
-                  <a-icon :type="advanced ? 'up' : 'down'"/>
-                </a>
+                <a-button style="margin-left: 8px" @click="() => this.queryParam = {}">导入</a-button>
+                <a-button style="margin-left: 8px" @click="() => this.queryParam = {}">导出</a-button>
+
               </span>
             </a-col>
           </a-row>
         </a-form>
       </div>
-      <a-row :gutter="[40,16]">
-        <a-col :span="6" v-for="i in 8" :key="i">
-          <a-card title="口罩机器">
-            <a slot="extra" href="#">详情</a>
-            <p><a href="">常州天正工业</a> </p>
-            <p>需求描述处。。。。。。</p>
-          </a-card></a-col>
-      </a-row>
+      <div class="table-operator">
+        <a-dropdown v-if="selectedRowKeys.length > 0">
+          <a-menu slot="overlay">
+            <a-menu-item key="1"><a-icon type="delete" />添加至待开发客户</a-menu-item>
+            <!-- lock | unlock -->
+            <a-menu-item key="2"><a-icon type="lock" />锁定</a-menu-item>
+          </a-menu>
+          <a-button style="margin-left: 8px">
+            批量操作 <a-icon type="down" />
+          </a-button>
+        </a-dropdown>
+      </div>
+      <s-table
+        ref="table"
+        size="default"
+        rowKey="key"
+        :columns="columns"
+        :data="loadData"
+        :alert="false"
+        showPagination="auto"
+      >
+        <span slot="serial" slot-scope="text, record, index">
+          {{ index + 1 }}
+        </span>
+        <span slot="status" slot-scope="text">
+          <a-badge :status="text | statusTypeFilter" :text="text | statusFilter" />
+        </span>
+        <span slot="description" slot-scope="text">
+          <ellipsis :length="4" tooltip>{{ text }}</ellipsis>
+        </span>
+
+        <span slot="action" slot-scope="text, record">
+          <template>
+            <a @click="handleEdit(record)">扫码联系</a>
+            <a-divider type="vertical" />
+            <a-dropdown>
+              <a class="ant-dropdown-link" @click="e => e.preventDefault()">
+                更多 <a-icon type="down" />
+              </a>
+              <a-menu slot="overlay">
+                <a-menu-item>
+                  <a href="javascript:;">查看详情</a>
+                </a-menu-item>
+                <a-menu-item>
+                  <a href="javascript:;">转至意向客户</a>
+                </a-menu-item>
+                <a-menu-item>
+                  <a href="javascript:;">删除客户</a>
+                </a-menu-item>
+              </a-menu>
+            </a-dropdown>
+          </template>
+        </span>
+      </s-table>
 
       <create-form
         ref="createModal"
@@ -108,33 +121,35 @@ const columns = [
     scopedSlots: { customRender: 'description' }
   },
   {
-    title: '单位性质',
+    title: '备案人',
     dataIndex: 'callNo',
     sorter: true,
-    needTotal: true,
     customRender: (text) => text + ' 次'
   },
   {
     title: '网站名称',
     dataIndex: 'callN',
     sorter: true,
-    needTotal: true,
-    customRender: (text) => text + ' 次'
+    customRender: (text) => 'www.baidu.com'
   },
   {
-    title: '网站备案/许可证号',
-    dataIndex: 'status',
-    scopedSlots: { customRender: 'status' }
+    title: '沟通次数',
+    dataIndex: 'updatedAt',
+    customRender: (text) => 3 + ' 次'
   },
   {
-    title: '更新时间',
+    title: '上次沟通时间',
+    dataIndex: 'updatedAt',
+    sorter: true
+  },
+  {
+    title: '联系方式',
     dataIndex: 'updatedAt',
     sorter: true
   },
   {
     title: '操作',
     dataIndex: 'action',
-    width: '150px',
     scopedSlots: { customRender: 'action' }
   }
 ]
