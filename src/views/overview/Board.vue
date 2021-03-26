@@ -23,7 +23,7 @@
               <span class="table-page-search-submitButtons" :style="advanced && { float: 'right', overflow: 'hidden' } || {} ">
                 <a-button type="primary" @click="$refs.table.refresh(true)">查询</a-button>
                 <a-button style="margin-left: 8px" @click="() => this.queryParam = {}">导入</a-button>
-                <a-button style="margin-left: 8px" @click="() => this.queryParam = {}">导出</a-button>
+                <!-- <a-button style="margin-left: 8px" @click="() => this.queryParam = {}">导出</a-button> -->
 
               </span>
             </a-col>
