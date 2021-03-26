@@ -66,7 +66,7 @@ export const asyncRouterMap = [
             path: '/own/needs',
             name: 'needs',
             component: () => import('@/views/business/Needs'),
-            meta: { title: '我的需求', keepAlive: false, permission: ['overview'] }
+            meta: { title: '活码制作', keepAlive: false, permission: ['overview'] }
           },
           {
             path: '/own/partner',
