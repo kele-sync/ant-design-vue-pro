@@ -13,31 +13,31 @@ export const asyncRouterMap = [
     name: 'index',
     component: BasicLayout,
     meta: { title: 'menu.home' },
-    redirect: '/overview/clients',
+    redirect: '/overview/companys',
     children: [
       {
         path: '/overview',
         name: 'overview',
-        redirect: '/overview/clients',
+        redirect: '/overview/companys',
         component: RouteView,
         meta: { title: '客户广场', keepAlive: true, icon: bxAnaalyse, permission: ['overview'] },
         children: [
           {
-            path: '/overview/clients',
-            name: 'clients',
-            component: () => import('@/views/overview/Clients'),
+            path: '/overview/companys',
+            name: 'companys',
+            component: () => import('@/views/overview/Companys'),
             meta: { title: '公司黄页', keepAlive: false, permission: ['overview'] }
           },
           {
-            path: '/overview/board',
-            name: 'board',
-            component: () => import('@/views/overview/Board'),
+            path: '/overview/develop',
+            name: 'develop',
+            component: () => import('@/views/overview/Develop'),
             meta: { title: '待开发客户', keepAlive: false, permission: ['overview'] }
           },
           {
-            path: '/overview/salesman',
-            name: 'salesman',
-            component: () => import('@/views/overview/Salesman'),
+            path: '/overview/client',
+            name: 'client',
+            component: () => import('@/views/overview/Clients'),
             meta: { title: '意向客户', keepAlive: false, permission: ['overview'] }
           }
 
@@ -67,13 +67,13 @@ export const asyncRouterMap = [
             name: 'partner',
             component: () => import('@/views/business/Partner'),
             meta: { title: '合作伙伴', keepAlive: false, permission: ['overview'] }
-          },
-          {
-            path: '/own/board',
-            name: 'board',
-            component: () => import('@/views/overview/Clients'),
-            meta: { title: '站内信', keepAlive: false, permission: ['overview'] }
           }
+          // {
+          //   path: '/own/board',
+          //   name: 'board',
+          //   component: () => import('@/views/overview/Clients'),
+          //   meta: { title: '站内信', keepAlive: false, permission: ['overview'] }
+          // }
 
         ]
       },

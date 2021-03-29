@@ -18,13 +18,41 @@
                 </a-select>
               </a-form-item>
             </a-col>
+            <template v-if="advanced">
+              <a-col :md="8" :sm="24">
+                <a-form-item label="单位性质">
+                  <a-input-number v-model="queryParam.callNo" style="width: 100%"/>
+                </a-form-item>
+              </a-col>
+              <a-col :md="8" :sm="24">
+                <a-form-item label="单位名称">
+                  <a-input v-model="queryParam.id" placeholder=""/>
+                </a-form-item>
+              </a-col>
+              <a-col :md="8" :sm="24">
+                <a-form-item label="更新日期">
+                  <a-date-picker v-model="queryParam.date" style="width: 100%" placeholder="请输入更新日期"/>
+                </a-form-item>
+              </a-col>
+              <!-- <a-col :md="8" :sm="24">
+                <a-form-item label="网站状态">
+                  <a-select v-model="queryParam.useStatus" placeholder="请选择" default-value="0">
+                    <a-select-option value="0">全部</a-select-option>
+                    <a-select-option value="1">关闭</a-select-option>
+                    <a-select-option value="2">运行中</a-select-option>
+                  </a-select>
+                </a-form-item>
+              </a-col> -->
 
-            <a-col :md="8" :sm="24">
+            </template>
+            <a-col :md="!advanced && 8 || 24" :sm="24">
               <span class="table-page-search-submitButtons" :style="advanced && { float: 'right', overflow: 'hidden' } || {} ">
                 <a-button type="primary" @click="$refs.table.refresh(true)">查询</a-button>
-                <a-button style="margin-left: 8px" @click="() => this.queryParam = {}">导入</a-button>
-                <!-- <a-button style="margin-left: 8px" @click="() => this.queryParam = {}">导出</a-button> -->
-
+                <a-button style="margin-left: 8px" @click="() => this.queryParam = {}">重置</a-button>
+                <a @click="toggleAdvanced" style="margin-left: 8px">
+                  {{ advanced ? '收起' : '展开' }}
+                  <a-icon :type="advanced ? 'up' : 'down'"/>
+                </a>
               </span>
             </a-col>
           </a-row>
@@ -34,8 +62,6 @@
         <a-dropdown v-if="selectedRowKeys.length > 0">
           <a-menu slot="overlay">
             <a-menu-item key="1"><a-icon type="delete" />添加至待开发客户</a-menu-item>
-            <!-- lock | unlock -->
-            <a-menu-item key="2"><a-icon type="lock" />锁定</a-menu-item>
           </a-menu>
           <a-button style="margin-left: 8px">
             批量操作 <a-icon type="down" />
@@ -48,7 +74,8 @@
         rowKey="key"
         :columns="columns"
         :data="loadData"
-        :alert="false"
+        :alert="true"
+        :rowSelection="rowSelection"
         showPagination="auto"
       >
         <span slot="serial" slot-scope="text, record, index">
@@ -63,7 +90,7 @@
 
         <span slot="action" slot-scope="text, record">
           <template>
-            <a @click="handleEdit(record)">扫码联系</a>
+            <a @click="handleEdit(record)">查看详情</a>
             <a-divider type="vertical" />
             <a-dropdown>
               <a class="ant-dropdown-link" @click="e => e.preventDefault()">
@@ -71,29 +98,59 @@
               </a>
               <a-menu slot="overlay">
                 <a-menu-item>
-                  <a href="javascript:;">查看详情</a>
+                  <a href="javascript:;" @click="addToDevelop()">添加至待开发客户</a>
                 </a-menu-item>
                 <a-menu-item>
-                  <a href="javascript:;">转至意向客户</a>
+                  <a href="javascript:;" @click="addToDevelop()">添加至意向客户</a>
                 </a-menu-item>
-                <a-menu-item>
-                  <a href="javascript:;">删除客户</a>
-                </a-menu-item>
+
               </a-menu>
             </a-dropdown>
           </template>
         </span>
       </s-table>
-
-      <create-form
-        ref="createModal"
+      <a-drawer
+        title="企业详情"
+        placement="right"
+        width="640"
+        @close="visible=false"
         :visible="visible"
-        :loading="confirmLoading"
-        :model="mdl"
-        @cancel="handleCancel"
-        @ok="handleOk"
-      />
-      <step-by-step-modal ref="modal" @ok="handleOk"/>
+      >
+        <a-descriptions title="常州天正工业" :column="1">
+          <a-descriptions-item label="域名">
+            <a href="https:www.baidu.com">https:www.baidu.com</a>
+          </a-descriptions-item>
+          <a-descriptions-item label="备案人">
+            胡晓雷
+          </a-descriptions-item>
+          <a-descriptions-item label="网站名称">
+            天正工业官网
+          </a-descriptions-item>
+          <a-descriptions-item label="更新时间">
+            2020-1-10
+          </a-descriptions-item>
+          <a-descriptions-item label="注册地址">
+            No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China
+          </a-descriptions-item>
+
+        </a-descriptions>
+        <div>
+          <a-button type="primary">
+            复制信息
+          </a-button>
+          <a-dropdown>
+            <a-menu slot="overlay" >
+              <a-menu-item key="1"> <a-icon type="user" />待开发用户</a-menu-item>
+              <a-menu-item key="2"> <a-icon type="user" />意向客户</a-menu-item>
+            </a-menu>
+            <a-button style="margin-left: 8px">收藏至 <a-icon type="down" /> </a-button>
+          </a-dropdown>
+          <a-button type="dashed" style="margin-left: 8px">
+            扫码打电话
+          </a-button>
+        </div>
+      </a-drawer>
+
     </a-card>
   </page-header-wrapper>
 </template>
@@ -104,7 +161,6 @@ import { STable, Ellipsis } from '@/components'
 import { getRoleList, getServiceList } from '@/api/manage'
 
 import StepByStepModal from '../list/modules/StepByStepModal'
-import CreateForm from '../list/modules/CreateForm'
 
 const columns = [
   {
@@ -130,20 +186,15 @@ const columns = [
     title: '网站名称',
     dataIndex: 'callN',
     sorter: true,
-    customRender: (text) => 'www.baidu.com'
+    customRender: (text) => text + ' 次'
   },
   {
-    title: '沟通次数',
-    dataIndex: 'updatedAt',
-    customRender: (text) => 3 + ' 次'
-  },
-  {
-    title: '上次沟通时间',
+    title: '更新时间',
     dataIndex: 'updatedAt',
     sorter: true
   },
   {
-    title: '联系方式',
+    title: '备案时间',
     dataIndex: 'updatedAt',
     sorter: true
   },
@@ -174,11 +225,10 @@ const statusMap = {
 }
 
 export default {
-  name: 'TableList',
+  name: 'Companys',
   components: {
     STable,
     Ellipsis,
-    CreateForm,
     StepByStepModal
   },
   data () {
@@ -189,7 +239,7 @@ export default {
       confirmLoading: false,
       mdl: null,
       // 高级搜索 展开/关闭
-      advanced: true,
+      advanced: false,
       // 查询参数
       queryParam: {},
       // 加载数据方法 必须为 Promise 对象
@@ -231,7 +281,9 @@ export default {
     },
     handleEdit (record) {
       this.visible = true
-      this.mdl = { ...record }
+    },
+    addToDevelop () {
+         this.$message.info('已添加至待开发客户')
     },
     handleOk () {
       const form = this.$refs.createModal.form

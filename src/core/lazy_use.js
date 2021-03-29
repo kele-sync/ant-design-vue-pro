@@ -46,7 +46,8 @@ import {
   Space,
   message,
   notification,
-  Calendar
+  Calendar,
+  FormModel
 } from 'ant-design-vue'
 import Viser from 'viser-vue'
 
@@ -101,6 +102,7 @@ Vue.use(Statistic)
 Vue.use(Descriptions)
 Vue.use(Space)
 Vue.use(Calendar)
+Vue.use(FormModel)
 
 Vue.prototype.$confirm = Modal.confirm
 Vue.prototype.$message = message
