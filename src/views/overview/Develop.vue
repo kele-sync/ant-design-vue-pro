@@ -152,10 +152,6 @@ const columns = [
     scopedSlots: { customRender: 'serial' }
   },
   {
-    title: '域名',
-    dataIndex: 'no'
-  },
-  {
     title: '单位名称',
     dataIndex: 'description',
     scopedSlots: { customRender: 'description' }
@@ -166,12 +162,7 @@ const columns = [
     sorter: true,
     customRender: text => text + ' 次'
   },
-  {
-    title: '网站名称',
-    dataIndex: 'callN',
-    sorter: true,
-    customRender: text => 'www.baidu.com'
-  },
+
   {
     title: '沟通次数',
     dataIndex: 'updatedAt',

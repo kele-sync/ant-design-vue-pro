@@ -80,14 +80,14 @@ export const asyncRouterMap = [
       {
         path: '/analyze',
         name: 'analyze',
-        redirect: '/analyze/clients',
+        redirect: '/analyze/map',
         component: RouteView,
         meta: { title: '市场分析', keepAlive: true, icon: bxAnaalyse, permission: ['overview'] },
         children: [
           {
-            path: '/own/salesman',
+            path: '/analyze/map',
             name: 'salesman',
-            component: () => import('@/views/overview/Clients'),
+            component: () => import('@/views/analyze/Map'),
             meta: { title: '客户地图', keepAlive: false, permission: ['overview'] }
           },
           {
