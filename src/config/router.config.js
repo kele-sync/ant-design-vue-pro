@@ -63,12 +63,6 @@ export const asyncRouterMap = [
             meta: { title: '对外名片', keepAlive: false, permission: ['overview'] }
           },
           {
-            path: '/own/needs',
-            name: 'needs',
-            component: () => import('@/views/business/Needs'),
-            meta: { title: '活码制作', keepAlive: false, permission: ['overview'] }
-          },
-          {
             path: '/own/partner',
             name: 'partner',
             component: () => import('@/views/business/Partner'),
@@ -113,10 +107,10 @@ export const asyncRouterMap = [
         meta: { title: '小工具', keepAlive: true, icon: bxAnaalyse, permission: ['overview'] },
         children: [
           {
-            path: '/own/salesman',
-            name: 'salesman',
-            component: () => import('@/views/overview/Clients'),
-            meta: { title: '二维码制作', keepAlive: false, permission: ['overview'] }
+            path: '/own/needs',
+            name: 'needs',
+            component: () => import('@/views/business/Needs'),
+            meta: { title: '活码制作', keepAlive: false, permission: ['overview'] }
           },
           {
             path: '/own/salesman',
