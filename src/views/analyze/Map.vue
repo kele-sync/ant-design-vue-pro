@@ -1,7 +1,10 @@
 <template>
   <page-header-wrapper>
-    <el-amap vid="amapDemo" >
-    </el-amap>
+    <a-card>
+
+      <el-amap vid="amapDemo" style="height:680px" >
+      </el-amap>
+    </a-card>
   </page-header-wrapper>
 </template>
 
