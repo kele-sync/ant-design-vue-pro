@@ -86,14 +86,14 @@ export const asyncRouterMap = [
         children: [
           {
             path: '/analyze/map',
-            name: 'salesman',
+            name: 'map',
             component: () => import('@/views/analyze/Map'),
             meta: { title: '客户地图', keepAlive: false, permission: ['overview'] }
           },
           {
-            path: '/own/clients',
-            name: 'clients',
-            component: () => import('@/views/overview/Clients'),
+            path: '/analyze/chart',
+            name: 'chart',
+            component: () => import('@/views/analyze/Chart'),
             meta: { title: '行业曲线', keepAlive: false, permission: ['overview'] }
           }
 
