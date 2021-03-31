@@ -42,7 +42,7 @@
         </a-col>
         <a-col :span="8" class="bar-chart">
           <div class="bar" ref="cover"></div>
-          <div class="bar"></div>
+          <div class="bar" ref="funnel"></div>
         </a-col>
       </a-row>
     </a-card>
@@ -58,14 +58,77 @@ export default {
     setTimeout(() => {
       this.initClientChart()
       this.initCoverChart()
+      this.initFunnelChart()
     }, 1)
   },
   methods: {
+    initFunnelChart () {
+      const funnelChart = echarts.init(this.$refs.funnel)
+      const option = {
+        title: {
+          text: '客户转化比',
+          subtext: 'todo'
+        },
+        tooltip: {
+          trigger: 'item',
+          formatter: '{a} <br/>{b} : {c}%'
+        },
+        legend: {
+          data: ['待开发客户', '扫码客户', '意向客户', '合作伙伴']
+        },
+
+        series: [
+          {
+            name: '漏斗图',
+            type: 'funnel',
+            left: '10%',
+            top: 60,
+            // x2: 80,
+            bottom: 10,
+            width: '80%',
+            // height: {totalHeight} - y - y2,
+            min: 0,
+            max: 100,
+            minSize: '0%',
+            maxSize: '100%',
+            sort: 'descending',
+            gap: 2,
+            label: {
+              show: true,
+              position: 'inside'
+            },
+            labelLine: {
+              length: 10,
+              lineStyle: {
+                width: 1,
+                type: 'solid'
+              }
+            },
+            itemStyle: {
+              borderColor: '#fff',
+              borderWidth: 1
+            },
+            emphasis: {
+              label: {
+                fontSize: 20
+              }
+            },
+            data: [
+              { value: 10, name: '合作伙伴' },
+              { value: 20, name: '意向客户' },
+              { value: 30, name: '扫码客户' },
+              { value: 80, name: '待开发客户' }
+            ]
+          }
+        ]
+      }
+      funnelChart.setOption(option)
+    },
     initCoverChart () {
       const coverChart = echarts.init(this.$refs.cover)
       const option = {
         title: {
-          text: '客户转化占比',
+          text: '客户所在城市分布',
           subtext: 'todo',
           top: 10,
           left: 10
@@ -92,11 +155,11 @@ export default {
         },
         radar: {
           indicator: [
-            { text: '合作伙伴数', max: 400 },
-            { text: '待开发客户沟通次数', max: 400 },
-            { text: '待开发用户数', max: 400 },
-            { text: '意向客户数', max: 400 },
-            { text: '意向客户沟通次数', max: 400 }
+            { text: '无锡', max: 400 },
+            { text: '上海', max: 400 },
+            { text: '苏州', max: 400 },
+            { text: '南通', max: 400 },
+            { text: '杭州', max: 400 }
           ]
         },
         series: (function () {

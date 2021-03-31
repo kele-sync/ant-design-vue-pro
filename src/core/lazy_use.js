@@ -47,9 +47,13 @@ import {
   message,
   notification,
   Calendar,
-  FormModel
+  FormModel,
+  Slider,
+  Comment,
+  Pagination,
+  Rate
 } from 'ant-design-vue'
-import Viser from 'viser-vue'
+// import Viser from 'viser-vue'
 
 // ext library
 import VueCropper from 'vue-cropper'
@@ -103,6 +107,10 @@ Vue.use(Descriptions)
 Vue.use(Space)
 Vue.use(Calendar)
 Vue.use(FormModel)
+Vue.use(Slider)
+Vue.use(Comment)
+Vue.use(Pagination)
+Vue.use(Rate)
 
 Vue.prototype.$confirm = Modal.confirm
 Vue.prototype.$message = message
@@ -112,7 +120,7 @@ Vue.prototype.$success = Modal.success
 Vue.prototype.$error = Modal.error
 Vue.prototype.$warning = Modal.warning
 
-Vue.use(Viser)
+// Vue.use(Viser)
 Vue.use(Dialog) // this.$dialog func
 Vue.use(MultiTab)
 Vue.use(PageLoading)

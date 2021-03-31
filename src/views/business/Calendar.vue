@@ -1,21 +1,34 @@
 <template>
-  <a-calendar>
-    <ul slot="dateCellRender" slot-scope="value" class="events">
-      <li v-for="item in getListData(value)" :key="item.content">
-        <a-badge :status="item.type" :text="item.content" />
-      </li>
-    </ul>
-    <template slot="monthCellRender" slot-scope="value">
-      <div v-if="getMonthData(value)" class="notes-month">
-        <section>{{ getMonthData(value) }}</section>
-        <span>Backlog number</span>
-      </div>
-    </template>
-  </a-calendar>
+  <a-card>
+    <a-calendar @select="openPlan">
+      <ul slot="dateCellRender" slot-scope="value" class="events">
+        <li v-for="item in getListData(value)" :key="item.content">
+          <a-badge :status="item.type" :text="item.content" />
+        </li>
+      </ul>
+      <template slot="monthCellRender" slot-scope="value">
+        <div v-if="getMonthData(value)" class="notes-month">
+          <section>{{ getMonthData(value) }}</section>
+          <span>Backlog number</span>
+        </div>
+      </template>
+    </a-calendar>
+    <plan ref="plan"></plan>
+  </a-card>
 </template>
 <script>
+import Plan from './module/Plan.vue'
 export default {
+	components: { Plan },
+  data () {
+    return {
+      visible: true
+    }
+  },
   methods: {
+    openPlan () {
+      this.$refs.plan.openDrawer()
+    },
     getListData (value) {
       let listData
       switch (value.date()) {

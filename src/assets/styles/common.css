@@ -195,3 +195,10 @@ table {
 .f-s-0 {
   flex-shrink: 0;
 }
+.fr{
+  float: right;
+}
+
+.fl{
+  float: left;
+}

@@ -50,17 +50,23 @@ export const asyncRouterMap = [
         component: RouteView,
         meta: { title: '我的生意', keepAlive: true, icon: bxAnaalyse, permission: ['overview'] },
         children: [
+          // {
+          //   path: '/own/plan',
+          //   name: 'Plan',
+          //   component: () => import('@/views/business/Plan'),
+          //   meta: { title: '工作规划', keepAlive: false, permission: ['overview'] }
+          // },
           {
             path: '/own/calendar',
             name: 'Calendar',
             component: () => import('@/views/business/Calendar'),
-            meta: { title: '工作日历', keepAlive: false, permission: ['overview'] }
+            meta: { title: '工作安排', keepAlive: false, permission: ['overview'] }
           },
           {
             path: '/own/card',
             name: 'card',
             component: () => import('@/views/business/Card'),
-            meta: { title: '对外名片', keepAlive: false, permission: ['overview'] }
+            meta: { title: '电子名片', keepAlive: false, permission: ['overview'] }
           },
           {
             path: '/own/partner',
@@ -95,6 +101,12 @@ export const asyncRouterMap = [
             name: 'chart',
             component: () => import('@/views/analyze/Chart'),
             meta: { title: '行业曲线', keepAlive: false, permission: ['overview'] }
+          },
+          {
+            path: '/analyze/feedback',
+            name: 'feedback',
+            component: () => import('@/views/analyze/Feedback'),
+            meta: { title: '名片反馈', keepAlive: false, permission: ['overview'] }
           }
 
         ]
@@ -106,17 +118,17 @@ export const asyncRouterMap = [
         component: RouteView,
         meta: { title: '小工具', keepAlive: true, icon: bxAnaalyse, permission: ['overview'] },
         children: [
-          {
-            path: '/own/needs',
-            name: 'needs',
-            component: () => import('@/views/business/Needs'),
-            meta: { title: '活码制作', keepAlive: false, permission: ['overview'] }
-          },
+          // {
+          //   path: '/own/needs',
+          //   name: 'needs',
+          //   component: () => import('@/views/business/Needs'),
+          //   meta: { title: '活码制作', keepAlive: false, permission: ['overview'] }
+          // },
           {
             path: '/own/salesman',
             name: 'salesman',
             component: () => import('@/views/overview/Clients'),
-            meta: { title: '待办事项', keepAlive: false, permission: ['overview'] }
+            meta: { title: 'todo', keepAlive: false, permission: ['overview'] }
           }
         ]
       },

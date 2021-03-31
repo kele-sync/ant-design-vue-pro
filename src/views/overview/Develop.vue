@@ -73,6 +73,9 @@
                   <a href="javascript:;" @click="addToDevelop()">转至意向客户</a>
                 </a-menu-item>
                 <a-menu-item>
+                  <a href="javascript:;">更新沟通时间</a>
+                </a-menu-item>
+                <a-menu-item>
                   <a href="javascript:;">删除客户</a>
                 </a-menu-item>
               </a-menu>
@@ -97,8 +100,8 @@
           <a-descriptions-item label="注册地址">
             No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China
           </a-descriptions-item>
-          <a-descriptions-item label="联系次数">
-            3次
+          <a-descriptions-item label="上次联系时间">
+            2020-1-10
           </a-descriptions-item>
           <a-descriptions-item label="电话二维码">
             <vue-qrcode value="Hello, World!" :options="{ width: 200 }"></vue-qrcode>
