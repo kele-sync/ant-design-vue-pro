@@ -8,15 +8,15 @@
         </a-checkbox>
       </div>
       <a-menu slot="overlay">
-        <a-menu-item key="1">
-          删除
-        </a-menu-item>
-        <a-menu-item key="2" @click="openTaskDetail()">
+        <a-menu-item key="1" @click="$refs.detail.openTaskDetail()">
           编辑
+        </a-menu-item>
+        <a-menu-item key="2">
+          删除
         </a-menu-item>
       </a-menu>
     </a-dropdown>
-    <task-detail></task-detail>
+    <task-detail ref="detail" mode="edit"></task-detail>
   </div>
 </template>
 
@@ -24,13 +24,7 @@
 import TaskDetail from './TaskDetail.vue'
 export default {
 	components: { TaskDetail },
-  name: 'Task',
-  props: {
-    openTaskDetail: {
-      type: Function,
-      required: true
-    }
-  }
+  name: 'Task'
 }
 </script>
 
