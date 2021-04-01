@@ -23,7 +23,7 @@
       <a-form-item label="任务备注">
         <a-textarea v-model="value" placeholder="请输入任务备注" :auto-size="{ minRows: 3, maxRows: 5 }" />
       </a-form-item>
-      <a-form-item :wrapper-col="{ span: 12 }">
+      <a-form-item :wrapper-col="{ span: 12 }" v-if="mode !='check'">
         <a-button type="primary" html-type="submit">
           保存
         </a-button>
@@ -36,6 +36,7 @@
 import { mapTaskClassify } from './TaskConfig'
 const mapTitle = {
   add: '新增任务',
+  check: '查看任务',
   edit: '编辑任务'
 }
 

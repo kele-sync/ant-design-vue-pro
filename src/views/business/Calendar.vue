@@ -1,33 +1,35 @@
 <template>
   <a-card>
-    <div class="fl">
-      <a-button-group >
-        <a-button @click="isList = true" :type="isList ? 'primary' : ''">日历</a-button>
-        <a-button @click="isList = false" :type="!isList ? 'primary' : ''">四象限</a-button>
-      </a-button-group>
-    </div>
-    <a-calendar @select="openPlan" v-if="isList">
-      <ul slot="dateCellRender" slot-scope="value" class="events">
-        <li v-for="item in getListData(value)" :key="item.content">
-          <a-badge :status="item.type" :text="item.content" />
-        </li>
-      </ul>
+    <a-tabs default-active-key="1" @change="callback">
+      <a-tab-pane key="1" tab="日历">
+        <a-calendar @select="openPlan" >
+          <ul slot="dateCellRender" slot-scope="value" class="events">
+            <li v-for="item in getListData(value)" :key="item.content">
+              <a-badge :status="item.type" :text="item.content" />
+            </li>
+          </ul>
 
-      <template slot="monthCellRender" slot-scope="value">
+          <template slot="monthCellRender" slot-scope="value">
 
-        <div v-if="getMonthData(value)" class="notes-month">
-          <section>{{ getMonthData(value) }}</section>
-          <span>Backlog number</span>
-        </div>
-      </template>
-    </a-calendar>
-    <div v-else>
-      <a-button class="fr" type="primary" icon="plus" @click="$refs.add.openTaskDetail()">新增</a-button>
-      <a-divider></a-divider>
+            <div v-if="getMonthData(value)" class="notes-month">
+              <section>{{ getMonthData(value) }}</section>
+              <span>Backlog number</span>
+            </div>
+          </template>
+        </a-calendar>
+      </a-tab-pane>
+      <a-tab-pane key="2" tab="四象限" >
+        <a-button type="primary" icon="plus" @click="$refs.add.openTaskDetail()">新增</a-button>
+        <a-divider></a-divider>
 
-      <classify>
-      </classify>
-    </div>
+        <classify>
+        </classify>
+      </a-tab-pane>
+      <a-tab-pane key="3" tab="已完成">
+        <accomplish></accomplish>
+      </a-tab-pane>
+    </a-tabs>
+
     <a-drawer
       title="当日安排"
       placement="right"
@@ -43,11 +45,12 @@
   </a-card>
 </template>
 <script>
+import Accomplish from './module/Accomplish.vue'
 import Classify from './module/Classify.vue'
 import Plan from './module/Plan.vue'
 import TaskDetail from './module/TaskDetail.vue'
 export default {
-	components: { Plan, Classify, TaskDetail },
+	components: { Plan, Classify, TaskDetail, Accomplish },
   data () {
    return {
       visible: false,

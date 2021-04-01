@@ -123,7 +123,6 @@
         </div>
         <a-divider></a-divider>
         <div>
-
           <a-form-model labelAlign="left" :model="form" :label-col="labelCol" :wrapper-col="wrapperCol">
             <a-form-model-item label="备注">
               <a-input v-model="form.desc" type="textarea" :autosize="{ minRows: 6, maxRows: 8 }" />
@@ -145,9 +144,6 @@ import moment from 'moment'
 import { STable, Ellipsis } from '@/components'
 import { getRoleList, getServiceList } from '@/api/manage'
 import VueQrcode from '@chenfengyuan/vue-qrcode'
-
-import StepByStepModal from '../list/modules/StepByStepModal'
-import CreateForm from '../list/modules/CreateForm'
 
 const columns = [
   {
@@ -212,8 +208,6 @@ export default {
   components: {
     STable,
     Ellipsis,
-    CreateForm,
-    StepByStepModal,
     VueQrcode
   },
   data () {

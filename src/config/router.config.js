@@ -114,7 +114,7 @@ export const asyncRouterMap = [
       {
         path: '/tools',
         name: 'tools',
-        redirect: '/analyze/clients',
+        redirect: '/tools/code',
         component: RouteView,
         meta: { title: '小工具', keepAlive: true, icon: bxAnaalyse, permission: ['overview'] },
         children: [
@@ -125,10 +125,10 @@ export const asyncRouterMap = [
           //   meta: { title: '活码制作', keepAlive: false, permission: ['overview'] }
           // },
           {
-            path: '/own/salesman',
+            path: '/tools/code',
             name: 'salesman',
-            component: () => import('@/views/overview/Clients'),
-            meta: { title: 'todo', keepAlive: false, permission: ['overview'] }
+            component: () => import('@/views/tools/Code'),
+            meta: { title: '二维码制作', keepAlive: false, permission: ['overview'] }
           }
         ]
       },
