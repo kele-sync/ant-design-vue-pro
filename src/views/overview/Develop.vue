@@ -76,7 +76,7 @@
                   <a href="javascript:;">更新沟通时间</a>
                 </a-menu-item>
                 <a-menu-item>
-                  <a href="javascript:;">删除客户</a>
+                  <a href="javascript:;">转至客户</a>
                 </a-menu-item>
               </a-menu>
             </a-dropdown>
@@ -162,11 +162,11 @@ const columns = [
     customRender: text => text + ' 次'
   },
 
-  {
-    title: '沟通次数',
-    dataIndex: 'updatedAt',
-    customRender: text => 3 + ' 次'
-  },
+  // {
+  //   title: '沟通次数',
+  //   dataIndex: 'updatedAt',
+  //   customRender: text => 3 + ' 次'
+  // },
   {
     title: '上次沟通时间',
     dataIndex: 'updatedAt',
