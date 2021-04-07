@@ -51,7 +51,8 @@ import {
   Slider,
   Comment,
   Pagination,
-  Rate
+  Rate,
+  Cascader
 } from 'ant-design-vue'
 // import Viser from 'viser-vue'
 
@@ -111,6 +112,7 @@ Vue.use(Slider)
 Vue.use(Comment)
 Vue.use(Pagination)
 Vue.use(Rate)
+Vue.use(Cascader)
 
 Vue.prototype.$confirm = Modal.confirm
 Vue.prototype.$message = message

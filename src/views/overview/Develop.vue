@@ -6,6 +6,11 @@
         <a-form layout="inline">
           <a-row :gutter="48">
             <a-col :md="8" :sm="24">
+              <a-form-item label="省份">
+                <a-input v-model="queryParam.id" placeholder="" />
+              </a-form-item>
+            </a-col>
+            <a-col :md="8" :sm="24">
               <a-form-item label="城市">
                 <a-input v-model="queryParam.id" placeholder="" />
               </a-form-item>
@@ -161,12 +166,6 @@ const columns = [
     sorter: true,
     customRender: text => text + ' 次'
   },
-
-  // {
-  //   title: '沟通次数',
-  //   dataIndex: 'updatedAt',
-  //   customRender: text => 3 + ' 次'
-  // },
   {
     title: '上次沟通时间',
     dataIndex: 'updatedAt',

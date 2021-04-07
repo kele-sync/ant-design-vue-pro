@@ -1,3 +1,4 @@
+
 <template>
   <page-header-wrapper>
     <a-card :bordered="false">
@@ -6,24 +7,22 @@
           <a-row :gutter="48">
             <a-col :md="8" :sm="24">
               <a-form-item label="城市">
-                <a-input v-model="queryParam.id" placeholder=""/>
+                <a-cascader :options="options" placeholder="请选择城市" @change="onChange" />
               </a-form-item>
             </a-col>
             <a-col :md="8" :sm="24">
-              <a-form-item label="行业">
+              <a-form-item label="类型">
                 <a-select v-model="queryParam.status" placeholder="请选择" default-value="0">
                   <a-select-option value="0">全部</a-select-option>
-                  <a-select-option value="1">关闭</a-select-option>
-                  <a-select-option value="2">运行中</a-select-option>
+                  <a-select-option value="1">企业</a-select-option>
+                  <a-select-option value="2">单位</a-select-option>
+                  <a-select-option value="3">事业单位</a-select-option>
+                  <a-select-option value="4">社会团体</a-select-option>
                 </a-select>
               </a-form-item>
             </a-col>
             <template v-if="advanced">
-              <a-col :md="8" :sm="24">
-                <a-form-item label="单位性质">
-                  <a-input-number v-model="queryParam.callNo" style="width: 100%"/>
-                </a-form-item>
-              </a-col>
+
               <a-col :md="8" :sm="24">
                 <a-form-item label="单位名称">
                   <a-input v-model="queryParam.id" placeholder=""/>
@@ -45,7 +44,7 @@
               </a-col> -->
 
             </template>
-            <a-col :md="!advanced && 8 || 24" :sm="24">
+            <a-col :sm="8">
               <span class="table-page-search-submitButtons" :style="advanced && { float: 'right', overflow: 'hidden' } || {} ">
                 <a-button type="primary" @click="$refs.table.refresh(true)">查询</a-button>
                 <a-button style="margin-left: 8px" @click="() => this.queryParam = {}">重置</a-button>
@@ -120,8 +119,14 @@
           <a-descriptions-item label="域名">
             <a href="https:www.baidu.com">https:www.baidu.com</a>
           </a-descriptions-item>
-          <a-descriptions-item label="备案人">
+          <a-descriptions-item label="法定代表人">
             扶工
+          </a-descriptions-item>
+          <a-descriptions-item label="电话号码">
+            15151317576
+          </a-descriptions-item>
+          <a-descriptions-item label="邮箱地址">
+            chj.ymh@outlook.com
           </a-descriptions-item>
           <a-descriptions-item label="网站名称">
             天正工业官网
@@ -131,6 +136,21 @@
           </a-descriptions-item>
           <a-descriptions-item label="注册地址">
             No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China
+          </a-descriptions-item>
+          <a-descriptions-item label="注册资金">
+            1w淫民币
+          </a-descriptions-item>
+          <a-descriptions-item label="企业类型">
+            有限责任公司
+          </a-descriptions-item>
+          <a-descriptions-item label="状态">
+            在业
+          </a-descriptions-item>
+          <a-descriptions-item label="经营范围">
+            通用设备，重金属
+          </a-descriptions-item>
+          <a-descriptions-item label="统一社会信用代码">
+            123123
           </a-descriptions-item>
 
         </a-descriptions>
@@ -159,6 +179,7 @@
 import moment from 'moment'
 import { STable, Ellipsis } from '@/components'
 import { getRoleList, getServiceList } from '@/api/manage'
+import cascaderAddressOptions from './cascader-address-options'
 
 import StepByStepModal from '../list/modules/StepByStepModal'
 
@@ -252,7 +273,8 @@ export default {
           })
       },
       selectedRowKeys: [],
-      selectedRows: []
+      selectedRows: [],
+      options: cascaderAddressOptions
     }
   },
   filters: {
@@ -265,6 +287,7 @@ export default {
   },
   created () {
     getRoleList({ t: new Date() })
+    console.log(cascaderAddressOptions)
   },
   computed: {
     rowSelection () {
