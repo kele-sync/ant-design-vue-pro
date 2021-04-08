@@ -61,7 +61,6 @@
           <div slot="actions">
             <a-dropdown>
               <a-menu slot="overlay">
-                <a-menu-item><a>更新沟通时间</a></a-menu-item>
                 <a-menu-item><a>转至待开发客户</a></a-menu-item>
                 <a-menu-item><a>添加至合作伙伴</a></a-menu-item>
                 <a-menu-item @click="handleRate"><a>修改成交把握</a></a-menu-item>

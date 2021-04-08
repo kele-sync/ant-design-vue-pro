@@ -28,17 +28,23 @@ export const asyncRouterMap = [
             component: () => import('@/views/overview/Companys'),
             meta: { title: '公司黄页', keepAlive: false, permission: ['overview'] }
           },
-          {
-            path: '/overview/develop',
-            name: 'develop',
-            component: () => import('@/views/overview/Develop'),
-            meta: { title: '待开发客户', keepAlive: false, permission: ['overview'] }
-          },
+          // {
+          //   path: '/overview/develop',
+          //   name: 'develop',
+          //   component: () => import('@/views/overview/Develop'),
+          //   meta: { title: '待开发客户', keepAlive: false, permission: ['overview'] }
+          // },
           {
             path: '/overview/client',
             name: 'client',
             component: () => import('@/views/overview/Clients'),
             meta: { title: '意向客户', keepAlive: false, permission: ['overview'] }
+          },
+          {
+            path: '/overview/Partner',
+            name: 'partner',
+            component: () => import('@/views/business/Partner'),
+            meta: { title: '合作伙伴', keepAlive: false, permission: ['overview'] }
           }
 
         ]
@@ -67,13 +73,13 @@ export const asyncRouterMap = [
             name: 'card',
             component: () => import('@/views/business/Card'),
             meta: { title: '电子名片', keepAlive: false, permission: ['overview'] }
-          },
-          {
-            path: '/own/partner',
-            name: 'partner',
-            component: () => import('@/views/business/Partner'),
-            meta: { title: '合作伙伴', keepAlive: false, permission: ['overview'] }
           }
+          // {
+          //   path: '/own/partner',
+          //   name: 'partner',
+          //   component: () => import('@/views/business/Partner'),
+          //   meta: { title: '合作伙伴', keepAlive: false, permission: ['overview'] }
+          // }
           // {
           //   path: '/own/board',
           //   name: 'board',

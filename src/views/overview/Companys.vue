@@ -47,7 +47,7 @@
             <a-col :sm="8">
               <span class="table-page-search-submitButtons" :style="advanced && { float: 'right', overflow: 'hidden' } || {} ">
                 <a-button type="primary" @click="$refs.table.refresh(true)">查询</a-button>
-                <a-button style="margin-left: 8px" @click="() => this.queryParam = {}">重置</a-button>
+                <a-button style="margin-left: 8px" @click="() => this.queryParam = {}">导出</a-button>
                 <a @click="toggleAdvanced" style="margin-left: 8px">
                   {{ advanced ? '收起' : '展开' }}
                   <a-icon :type="advanced ? 'up' : 'down'"/>
@@ -57,7 +57,7 @@
           </a-row>
         </a-form>
       </div>
-      <div class="table-operator">
+      <!-- <div class="table-operator">
         <a-dropdown v-if="selectedRowKeys.length > 0">
           <a-menu slot="overlay">
             <a-menu-item key="1"><a-icon type="delete" />添加至待开发客户</a-menu-item>
@@ -66,15 +66,14 @@
             批量操作 <a-icon type="down" />
           </a-button>
         </a-dropdown>
-      </div>
+      </div> -->
       <s-table
         ref="table"
         size="default"
         rowKey="key"
         :columns="columns"
         :data="loadData"
-        :alert="true"
-        :rowSelection="rowSelection"
+        :alert="false"
         showPagination="auto"
       >
         <span slot="serial" slot-scope="text, record, index">
@@ -91,20 +90,20 @@
           <template>
             <a @click="handleEdit(record)">查看详情</a>
             <a-divider type="vertical" />
-            <a-dropdown>
+            <a @click="addToDevelop(record)">添加至意向客户</a>
+
+            <!-- <a-dropdown>
               <a class="ant-dropdown-link" @click="e => e.preventDefault()">
                 更多 <a-icon type="down" />
               </a>
               <a-menu slot="overlay">
-                <a-menu-item>
-                  <a href="javascript:;" @click="addToDevelop()">添加至待开发客户</a>
-                </a-menu-item>
+
                 <a-menu-item>
                   <a href="javascript:;" @click="addToDevelop()">添加至意向客户</a>
                 </a-menu-item>
 
               </a-menu>
-            </a-dropdown>
+            </a-dropdown> -->
           </template>
         </span>
       </s-table>
@@ -146,6 +145,9 @@
           <a-descriptions-item label="状态">
             在业
           </a-descriptions-item>
+          <a-descriptions-item label="等级机关">
+            龙岗局
+          </a-descriptions-item>
           <a-descriptions-item label="经营范围">
             通用设备，重金属
           </a-descriptions-item>
@@ -156,15 +158,18 @@
         </a-descriptions>
         <div>
           <a-button type="primary">
-            复制信息
+            复制手机号
           </a-button>
-          <a-dropdown>
+          <!-- <a-dropdown>
             <a-menu slot="overlay" >
               <a-menu-item key="1"> <a-icon type="user" />待开发用户</a-menu-item>
               <a-menu-item key="2"> <a-icon type="user" />意向客户</a-menu-item>
             </a-menu>
             <a-button style="margin-left: 8px">收藏至 <a-icon type="down" /> </a-button>
-          </a-dropdown>
+          </a-dropdown> -->
+          <a-button type="primary" style="margin-left: 8px">
+            转至意向客户
+          </a-button>
           <a-button type="dashed" style="margin-left: 8px">
             扫码打电话
           </a-button>
@@ -198,8 +203,14 @@ const columns = [
     scopedSlots: { customRender: 'description' }
   },
   {
-    title: '备案人',
+    title: '企业法人',
     dataIndex: 'callNo',
+    sorter: true,
+    customRender: (text) => text + ' 次'
+  },
+  {
+    title: '联系方式',
+    dataIndex: 'callN',
     sorter: true,
     customRender: (text) => text + ' 次'
   },
@@ -208,11 +219,6 @@ const columns = [
     dataIndex: 'callN',
     sorter: true,
     customRender: (text) => text + ' 次'
-  },
-  {
-    title: '更新时间',
-    dataIndex: 'updatedAt',
-    sorter: true
   },
   {
     title: '备案时间',
