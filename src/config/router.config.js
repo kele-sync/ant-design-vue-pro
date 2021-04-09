@@ -135,6 +135,12 @@ export const asyncRouterMap = [
             name: 'salesman',
             component: () => import('@/views/tools/Code'),
             meta: { title: '二维码制作', keepAlive: false, permission: ['overview'] }
+          },
+          {
+            path: '/tools/code',
+            name: 'salesman',
+            component: () => import('@/views/tools/Code'),
+            meta: { title: '推广返利', keepAlive: false, permission: ['overview'] }
           }
         ]
       },

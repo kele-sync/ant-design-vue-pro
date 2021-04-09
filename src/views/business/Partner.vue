@@ -50,7 +50,7 @@
                 <a-menu-item><a>更新沟通时间</a></a-menu-item>
                 <a-menu-item><a>转至待开发客户</a></a-menu-item>
                 <a-menu-item><a>添加至合作伙伴</a></a-menu-item>
-                <a-menu-item @click="handleRate"><a>修改客户星级</a></a-menu-item>
+                <a-menu-item @click="handleRate"><a>修改客户信息</a></a-menu-item>
                 <a-menu-item @click="handleDelete()"><a>删除客户</a></a-menu-item>
               </a-menu>
               <a>更多<a-icon type="down"/></a>

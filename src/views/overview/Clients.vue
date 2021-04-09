@@ -61,7 +61,8 @@
           <div slot="actions">
             <a-dropdown>
               <a-menu slot="overlay">
-                <a-menu-item><a>转至待开发客户</a></a-menu-item>
+                <!-- <a-menu-item><a>转至待开发客户</a></a-menu-item> -->
+                <a-menu-item><a>修改信息</a></a-menu-item>
                 <a-menu-item><a>添加至合作伙伴</a></a-menu-item>
                 <a-menu-item @click="handleRate"><a>修改成交把握</a></a-menu-item>
                 <a-menu-item @click="handleDelete()"><a>删除客户</a></a-menu-item>
@@ -73,10 +74,6 @@
             <div class="list-content-item">
               <span>联系人</span>
               <p>{{ item.owner }}</p>
-            </div>
-            <div class="list-content-item">
-              <span>上次沟通时间</span>
-              <p>{{ item.endAt }}</p>
             </div>
 
             <div class="list-content-item">
@@ -109,9 +106,7 @@
           <a-descriptions-item label="注册地址">
             No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China
           </a-descriptions-item>
-          <a-descriptions-item label="上次联系时间">
-            2020-1-10
-          </a-descriptions-item>
+
           <a-descriptions-item label="电话二维码">
             <vue-qrcode value="Hello, World!" :options="{ width: 200 }"></vue-qrcode>
           </a-descriptions-item>
