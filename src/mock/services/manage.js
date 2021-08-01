@@ -18,7 +18,8 @@ const serverList = (options) => {
     result.push({
       key: tmpKey,
       id: tmpKey,
-      no: 'No ' + tmpKey,
+      no: Mock.mock('@email'),
+      type: '会员',
       description: '这是一段描述',
       callNo: Mock.mock('@integer(1, 999)'),
       status: Mock.mock('@integer(0, 3)'),

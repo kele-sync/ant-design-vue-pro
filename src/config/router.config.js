@@ -13,8 +13,30 @@ export const asyncRouterMap = [
     name: 'index',
     component: BasicLayout,
     meta: { title: 'menu.home' },
-    redirect: '/overview/companys',
+    redirect: '/icp/main',
     children: [
+      {
+        path: '/icp',
+        name: 'icp',
+        redirect: '/icp/main',
+        component: RouteView,
+        meta: { title: 'ICP管理', keepAlive: true, icon: bxAnaalyse, permission: ['overview'] },
+        children: [
+          {
+            path: '/icp/main',
+            name: 'main',
+            component: () => import('@/views/icp/Main'),
+            meta: { title: '平台概览', keepAlive: false, permission: ['overview'] }
+          },
+          {
+            path: '/icp/users',
+            name: 'users',
+            component: () => import('@/views/icp/Users'),
+            meta: { title: '用户管理', keepAlive: false, permission: ['overview'] }
+          }
+
+        ]
+      },
       {
         path: '/overview',
         name: 'overview',
