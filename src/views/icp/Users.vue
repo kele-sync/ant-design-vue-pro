@@ -1,3 +1,4 @@
+
 <template>
   <page-header-wrapper>
     <a-modal title="密码修改" :visible="visible" @ok="visible=false" @cancel="visible = false">
@@ -50,10 +51,10 @@
         <span slot="action" slot-scope="text, record">
           <template>
             <a-dropdown>
-              <a-menu slot="overlay" @click="handleMenuClick">
-                <a-menu-item :key="i.value" v-for="i in vipGrade" :value="i.value">
+              <a-menu slot="overlay" @click="index=>handleMenuClick(index,record)">
+                <a-menu-item :key="i.months" v-for="i in vipGrade" :value="i.months">
                   <a-icon type="alert" />
-                  {{ i.label }}
+                  {{ i.name }}
                 </a-menu-item>
               </a-menu>
               <a-button style="margin-left: 8px">
@@ -89,21 +90,7 @@
 import moment from 'moment'
 import { STable } from '@/components'
 import { getServiceList } from '@/api/manage'
-
-const vipGrade = [
-  {
-    label: '一个月',
-    value: '1'
-  },
-  {
-    label: '一季度',
-    value: '3'
-  },
-  {
-    label: '一年',
-    value: '4'
-  }
-]
+import { queryAppUserPage, queryGradePage, recharge } from '@/api/icp'
 
 const columns = [
   {
@@ -112,11 +99,12 @@ const columns = [
   },
   {
     title: '账号',
-    dataIndex: 'no'
+    dataIndex: 'phoneNum'
   },
   {
     title: '用户类型',
-    dataIndex: 'type'
+    dataIndex: 'isVip',
+      customRender: (text) => text ? 'vip' : '游客'
   },
   {
     title: '续费次数',
@@ -124,8 +112,7 @@ const columns = [
   },
   {
     title: '会员到期日',
-    dataIndex: 'updatedAt',
-    sorter: true
+    dataIndex: 'vipValidDate'
   },
   // {
   //   title: '是否禁用',
@@ -148,7 +135,7 @@ export default {
     this.columns = columns
     return {
       dateVisible: false,
-      vipGrade,
+      vipGrade: [],
       // create model
       visible: false,
       confirmLoading: false,
@@ -161,8 +148,8 @@ export default {
       loadData: parameter => {
         const requestParameters = Object.assign({}, parameter, this.queryParam)
         console.log('loadData request parameters:', requestParameters)
-        return getServiceList(requestParameters).then(res => {
-          return res.result
+        return queryAppUserPage(requestParameters).then(res => {
+          return res.data
         })
       },
       selectedRowKeys: [],
@@ -170,17 +157,33 @@ export default {
       options: []
     }
   },
+  mounted () {
+    this.getGradePage()
+  },
 
   methods: {
-    handleMenuClick (i) {
-      const item = vipGrade.find(item => item.value === i.key)
+    getGradePage () {
+      queryGradePage({}).then((result) => {
+        this.vipGrade = result.data.list
+      })
+    },
+    handleMenuClick (i, row) {
+      const item = this.vipGrade.find(item => item.months === i.key)
+      console.log(item)
       this.$confirm({
         title: '操作确认',
-        content: '确认续期' + item.label,
+        content: '确认续期' + item.name,
         okText: '确认',
         cancelText: '取消',
         onOk () {
-          console.log('OK')
+          recharge({
+            belongAppUser: row.id,
+            name: item.name,
+            months: item.months,
+            fee: item.fee
+          }).then((result) => {
+
+          })
         },
         onCancel () {
           console.log('Cancel')

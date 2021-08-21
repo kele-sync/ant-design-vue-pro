@@ -143,12 +143,12 @@ export default {
         pageSize: (pagination && pagination.pageSize) ||
           this.showPagination && this.localPagination.pageSize || this.pageSize
       },
-      (sorter && sorter.field && {
-        sortField: sorter.field
-      }) || {},
-      (sorter && sorter.order && {
-        sortOrder: sorter.order
-      }) || {}, {
+        (sorter && sorter.field && {
+          sortField: sorter.field
+        }) || {},
+        (sorter && sorter.order && {
+          sortOrder: sorter.order
+        }) || {}, {
         ...filters
       }
       )
@@ -158,14 +158,14 @@ export default {
       if ((typeof result === 'object' || typeof result === 'function') && typeof result.then === 'function') {
         result.then(r => {
           this.localPagination = this.showPagination && Object.assign({}, this.localPagination, {
-            current: r.pageNo, // 返回结果中的当前分页数
+            current: r.currPage, // 返回结果中的当前分页数
             total: r.totalCount, // 返回结果中的总记录数
             showSizeChanger: this.showSizeChanger,
             pageSize: (pagination && pagination.pageSize) ||
               this.localPagination.pageSize
           }) || false
           // 为防止删除数据后导致页面当前页面数据长度为 0 ,自动翻页到上一页
-          if (r.data.length === 0 && this.showPagination && this.localPagination.current > 1) {
+          if (r.list.length === 0 && this.showPagination && this.localPagination.current > 1) {
             this.localPagination.current--
             this.loadData()
             return
@@ -180,7 +180,7 @@ export default {
           } catch (e) {
             this.localPagination = false
           }
-          this.localDataSource = r.data // 返回结果中的数组数据
+          this.localDataSource = r.list // 返回结果中的数组数据
           this.localLoading = false
         })
       }
@@ -301,15 +301,15 @@ export default {
       return props[k]
     })
     const table = (
-      <a-table {...{ props, scopedSlots: { ...this.$scopedSlots } }} onChange={this.loadData} onExpand={ (expanded, record) => { this.$emit('expand', expanded, record) } }>
-        { Object.keys(this.$slots).map(name => (<template slot={name}>{this.$slots[name]}</template>)) }
+      <a-table {...{ props, scopedSlots: { ...this.$scopedSlots } }} onChange={this.loadData} onExpand={(expanded, record) => { this.$emit('expand', expanded, record) }}>
+        {Object.keys(this.$slots).map(name => (<template slot={name}>{this.$slots[name]}</template>))}
       </a-table>
     )
 
     return (
       <div class="table-wrapper">
-        { showAlert ? this.renderAlert() : null }
-        { table }
+        {showAlert ? this.renderAlert() : null}
+        {table}
       </div>
     )
   }

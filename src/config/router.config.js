@@ -13,7 +13,7 @@ export const asyncRouterMap = [
     name: 'index',
     component: BasicLayout,
     meta: { title: 'menu.home' },
-    redirect: '/icp/main',
+    redirect: '/user/login',
     children: [
       {
         path: '/icp',

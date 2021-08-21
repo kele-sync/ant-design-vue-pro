@@ -2,7 +2,13 @@
   <div class="main">
     <particles-bg type="polygon" :bg="true" />
 
-    <a-form id="formLogin" class="user-layout-login" ref="formLogin" :form="form" @submit="handleSubmit">
+    <a-form
+      id="formLogin"
+      class="user-layout-login"
+      ref="formLogin"
+      :form="form"
+      @submit="handleSubmit"
+    >
       <a-tabs
         :activeKey="customActiveKey"
         :tabBarStyle="{ textAlign: 'center', borderBottom: 'unset' }"
@@ -24,7 +30,7 @@
               v-decorator="[
                 'username',
                 {
-                  initialValue:'admin',
+                  initialValue:'kele',
                   rules: [
                     { required: true, message: $t('user.userName.required') },
                     { validator: handleUsernameOrEmail }
@@ -43,7 +49,7 @@
               placeholder="密码：请输入密码"
               v-decorator="[
                 'password',
-                { initialValue:'admin', rules: [{ required: true,message: $t('user.password.required') }], validateTrigger: 'blur' }
+                { initialValue:'kele', rules: [{ required: true,message: $t('user.password.required') }], validateTrigger: 'blur' }
               ]"
             >
               <a-icon slot="prefix" type="lock" :style="{ color: 'rgba(0,0,0,.25)' }" />
@@ -75,16 +81,24 @@
               ></a-button>
             </a-col>
           </a-row>
-        </a-tab-pane> -->
+        </a-tab-pane>-->
       </a-tabs>
 
       <a-form-item>
-        <a-checkbox v-decorator="['rememberMe', { valuePropName: 'checked' }]">{{
+        <a-checkbox v-decorator="['rememberMe', { valuePropName: 'checked' }]">
+          {{
           $t('user.login.remember-me')
-        }}</a-checkbox>
-        <router-link :to="{ name: 'recover', params: { user: 'aaa' } }" class="forge-password" style="float: right;">{{
+          }}
+        </a-checkbox>
+        <router-link
+          :to="{ name: 'recover', params: { user: 'aaa' } }"
+          class="forge-password"
+          style="float: right;"
+        >
+          {{
           $t('user.login.forgot-password')
-        }}</router-link>
+          }}
+        </router-link>
       </a-form-item>
 
       <a-form-item style="margin-top:24px">
@@ -95,8 +109,7 @@
           class="login-button"
           :loading="state.loginBtn"
           :disabled="state.loginBtn"
-        >登录</a-button
-        >
+        >登录</a-button>
       </a-form-item>
 
       <div class="user-login-other">
@@ -109,18 +122,17 @@
         </a>
         <a>
           <a-icon class="item-icon" type="weibo-circle"></a-icon>
-        </a> -->
+        </a>-->
         <router-link class="register" :to="{ name: 'register' }">注册</router-link>
       </div>
-
     </a-form>
 
-    <two-step-captcha
+    <!-- <two-step-captcha
       v-if="requiredTwoStepCaptcha"
       :visible="stepCaptchaVisible"
       @success="stepCaptchaSuccess"
       @cancel="stepCaptchaCancel"
-    ></two-step-captcha>
+    ></two-step-captcha>-->
   </div>
 </template>
 
@@ -202,7 +214,7 @@ export default {
           const loginParams = { ...values }
           delete loginParams.username
           loginParams[!state.loginType ? 'email' : 'username'] = values.username
-          loginParams.password = md5(values.password)
+          loginParams.password = values.password
           Login(loginParams)
             .then(res => this.loginSuccess(res))
             .catch(err => this.requestFailed(err))
@@ -277,7 +289,7 @@ export default {
         })
       })
       */
-      this.$router.push({ path: '/' })
+      this.$router.push({ path: '/icp/main' })
       // 延迟 1 秒显示欢迎信息
       setTimeout(() => {
         this.$notification.success({
@@ -301,48 +313,48 @@ export default {
 
 <style lang="less" scoped>
 .user-layout-login {
-  label {
-    font-size: 14px;
-  }
+	label {
+		font-size: 14px;
+	}
 
-  .getCaptcha {
-    display: block;
-    width: 100%;
-    height: 40px;
-  }
+	.getCaptcha {
+		display: block;
+		width: 100%;
+		height: 40px;
+	}
 
-  .forge-password {
-    font-size: 14px;
-  }
+	.forge-password {
+		font-size: 14px;
+	}
 
-  button.login-button {
-    padding: 0 15px;
-    font-size: 16px;
-    height: 40px;
-    width: 100%;
-  }
+	button.login-button {
+		padding: 0 15px;
+		font-size: 16px;
+		height: 40px;
+		width: 100%;
+	}
 
-  .user-login-other {
-    text-align: left;
-    margin-top: 24px;
-    line-height: 22px;
+	.user-login-other {
+		text-align: left;
+		margin-top: 24px;
+		line-height: 22px;
 
-    .item-icon {
-      font-size: 24px;
-      color: rgba(0, 0, 0, 0.2);
-      margin-left: 16px;
-      vertical-align: middle;
-      cursor: pointer;
-      transition: color 0.3s;
+		.item-icon {
+			font-size: 24px;
+			color: rgba(0, 0, 0, 0.2);
+			margin-left: 16px;
+			vertical-align: middle;
+			cursor: pointer;
+			transition: color 0.3s;
 
-      &:hover {
-        color: #1890ff;
-      }
-    }
+			&:hover {
+				color: #1890ff;
+			}
+		}
 
-    .register {
-      float: right;
-    }
-  }
+		.register {
+			float: right;
+		}
+	}
 }
 </style>
