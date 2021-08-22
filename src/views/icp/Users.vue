@@ -112,7 +112,8 @@ const columns = [
   },
   {
     title: '会员到期日',
-    dataIndex: 'vipValidDate'
+    dataIndex: 'vipValidDate',
+      customRender: (text) => text ? moment(text).format('yyyy/MM/DD hh:mm:ss') : ''
   },
   // {
   //   title: '是否禁用',
