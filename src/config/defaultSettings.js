@@ -23,7 +23,7 @@ export default {
   menu: {
     locale: true
   },
-  title: 'kele',
+  title: '退役电池回收系统',
   pwa: false,
   iconfontUrl: '',
   production: process.env.NODE_ENV === 'production' && process.env.VUE_APP_PREVIEW !== 'true'

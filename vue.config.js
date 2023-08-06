@@ -106,8 +106,8 @@ const vueConfig = {
     port: 8000,
     // If you want to turn on the proxy, please remove the mockjs /src/main.jsL11
     proxy: {
-      '/icp': {
-        target: 'http://wxszc.com',
+      '/api': {
+        target: 'http://api.wxszc.com/',
         changeOrigin: true // 如果接口跨域，需要进行这个参数配置
       }
     }

@@ -2,21 +2,21 @@
   <div id="userLayout" :class="['user-layout-wrapper', isMobile && 'mobile']">
     <div class="container">
 
-      <div class="user-layout-lang">
+      <!-- <div class="user-layout-lang">
         <select-lang class="select-lang-trigger" />
-      </div>
+      </div> -->
       <div class="user-layout-content">
 
         <div class="top">
           <div class="header">
             <a href="/">
-              <img src="~@/assets/logo.svg" class="logo" alt="logo" />
-              <span class="title">科勒销售系统</span>
+              <img src="~@/assets/logo.jpg" class="logo" alt="logo" /> <br />
+              <span class="title">退役电池回收系统</span>
             </a>
           </div>
-          <div class="desc">
-            销售获客小工具
-          </div>
+          <!-- <div class="desc">
+            登录
+          </div> -->
         </div>
 
         <router-view />
@@ -45,10 +45,10 @@ export default {
     SelectLang
   },
   mixins: [deviceMixin],
-  mounted () {
+  mounted() {
     document.body.classList.add('userLayout')
   },
-  beforeDestroy () {
+  beforeDestroy() {
     document.body.classList.remove('userLayout')
   }
 }
@@ -73,6 +73,9 @@ export default {
     //padding: 50px 0 84px;
     position: relative;
 
+    background: url('../assets/bg03.png') no-repeat 100% 100%;
+    background-size: 100% 100%;
+
     .user-layout-lang {
       width: 100%;
       height: 40px;
@@ -92,7 +95,7 @@ export default {
     }
 
     .user-layout-content {
-      padding: 32px 0 24px;
+      padding: 20% 0 24px;
 
       .top {
         text-align: center;
@@ -112,21 +115,21 @@ export default {
           }
 
           .logo {
-            height: 44px;
+            height: 54px;
             vertical-align: top;
-            margin-right: 16px;
             border-style: none;
           }
 
           .title {
             font-size: 33px;
-            color: rgba(0, 0, 0, 0.85);
+            color: rgba(255, 255, 255, 0.85);
             font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif;
             font-weight: 600;
             position: relative;
-            top: 2px;
+            top: 12px;
           }
         }
+
         .desc {
           font-size: 14px;
           color: rgba(0, 0, 0, 0.45);
@@ -152,14 +155,17 @@ export default {
         .links {
           margin-bottom: 8px;
           font-size: 14px;
+
           a {
             color: rgba(0, 0, 0, 0.45);
             transition: all 0.3s;
+
             &:not(:last-child) {
               margin-right: 40px;
             }
           }
         }
+
         .copyright {
           color: rgba(0, 0, 0, 0.45);
           font-size: 14px;

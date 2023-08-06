@@ -1,0 +1,368 @@
+.weint-table {
+    &.small {
+        /deep/.ve-table-body-td {
+            padding: 7px 10px !important;
+        }
+    }
+    &.large {
+        /deep/.ve-table-body-td {
+            padding: 15px 10px !important;
+        }
+    }
+    .empty-data {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 200px;
+        width: 100%;
+        color: @text-color;
+        font-size: 16px;
+        border: 1px solid @gray-2;
+        border-top: 0;
+        background: #fff;
+        &.night {
+            opacity: 0.6;
+        }
+    }
+    /deep/.operation,
+    /deep/.opation-container {
+        > * {
+            padding: 0 !important;
+            margin: 0 10px 0 0;
+            &:last-child {
+                margin: 0;
+            }
+        }
+    }
+    .edit-table-header-required {
+        &::before {
+            content: '* ';
+            color: @error-color;
+        }
+    }
+    .drop-icon {
+        cursor: move;
+    }
+    /deep/.ant-select-dropdown {
+        z-index: @weint-table-over-select-zindex;
+    }
+    &.popup-by-table {
+        // 下拉框跟随table滚动时，z-index层架要在表头之下
+        /deep/.ant-select-dropdown {
+            z-index: @weint-table-select-zindex;
+        }
+    }
+}
+.weint-pagination {
+    height: 64px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    /deep/.ant-pagination-options-size-changer.ant-select {
+        margin-right: 0;
+    }
+    /deep/.ant-pagination-options-quick-jumper {
+        margin-left: 8px;
+    }
+}
+/deep/ .ve-table-header-th {
+    position: relative;
+    font-weight: 600 !important;
+    .we-edit {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: @primary-5;
+        color: #fff;
+        border-bottom-right-radius: @border-radius-base;
+        font-size: 20px;
+        padding: 2px;
+    }
+}
+/deep/.ve-table-body-td {
+    padding: 11px 10px !important;
+}
+/deep/.ve-table .ve-table-container.ve-table-container-left-scrolling .ve-table-last-left-fixed-column {
+    border-right: 3px solid @component-border;
+    padding-left: 12px !important;
+}
+/deep/.ve-table .ve-table-container.ve-table-container-right-scrolling .ve-table-first-right-fixed-column {
+    border-left: 3px solid @component-border;
+    padding-right: 13px !important;
+}
+/deep/
+    .ve-table
+    .ve-table-container
+    .ve-table-content-wrapper
+    table.ve-table-content
+    tbody.ve-table-body.ve-table-row-highlight
+    tr.ve-table-body-tr.ve-table-tr-highlight
+    td {
+    background: @gray-1;
+}
+/deep/.ve-table
+    .ve-table-container
+    .ve-table-content-wrapper
+    table.ve-table-content
+    tbody.ve-table-body
+    tr.ve-table-body-tr
+    td.ve-table-operation-col.ve-table-cell-indicator-active,
+/deep/.ve-table
+    .ve-table-container
+    .ve-table-content-wrapper
+    table.ve-table-content
+    tbody.ve-table-body
+    tr.ve-table-expand-tr
+    td.ve-table-operation-col.ve-table-cell-indicator-active {
+    background-color: @gray-3 !important;
+    color: @font-gy4 !important;
+}
+/deep/.ve-table
+    .ve-table-container
+    .ve-table-content-wrapper
+    table.ve-table-content
+    thead.ve-table-header
+    tr.ve-table-header-tr
+    th.ve-table-header-th.ve-table-cell-indicator-active {
+    background-color: @gray-3 !important;
+    color: @font-gy4 !important;
+}
+/deep/.ve-table
+    .ve-table-container
+    .ve-table-content-wrapper
+    table.ve-table-content
+    tbody.ve-table-body
+    tr.ve-table-body-tr
+    td.ve-table-operation-col.ve-table-cell-indicator,
+/deep/.ve-table
+    .ve-table-container
+    .ve-table-content-wrapper
+    table.ve-table-content
+    tbody.ve-table-body
+    tr.ve-table-expand-tr
+    td.ve-table-operation-col.ve-table-cell-indicator {
+    background-color: @gray-3 !important;
+}
+/deep/ .ve-table-sort {
+    top: -2px;
+    color: @font-gy2 !important;
+    > i {
+        font-size: 12px !important;
+        &.active {
+            color: @font-gy4 !important;
+        }
+    }
+}
+/deep/.ve-table .ve-table-container {
+    .we-scroll;
+}
+/deep/.ve-table-header-th {
+    .ve-checkbox-label {
+        display: none !important;
+    }
+}
+/deep/.ve-table-body-tr {
+    .ve-checkbox-label {
+        display: none !important;
+    }
+    .ve-checkbox {
+        line-height: 17px !important;
+        display: none !important;
+        position: relative;
+        top: -2px;
+    }
+    &:has(.ve-checkbox-checked) {
+        .ve-checkbox {
+            display: inline-block !important;
+        }
+        .check-index {
+            display: none;
+        }
+    }
+    .ve-checkbox:has(.ve-checkbox-checked) {
+        display: inline-block !important;
+    }
+    &:hover {
+        .ve-checkbox {
+            display: inline-block !important;
+        }
+        .check-index {
+            display: none;
+        }
+    }
+}
+/deep/.ve-table
+    .ve-table-container
+    .ve-table-content-wrapper
+    table.ve-table-content
+    tbody.ve-table-body
+    tr.ve-table-body-tr,
+/deep/.ve-table
+    .ve-table-container
+    .ve-table-content-wrapper
+    table.ve-table-content
+    tbody.ve-table-body
+    tr.ve-table-expand-tr {
+    height: auto;
+}
+/deep/.ve-table-body-td-span-ellipsis {
+    word-break: break-all;
+}
+/deep/.table-body-cell-selected {
+    background: @primary-1!important;
+}
+/deep/.ghost-tr td {
+    background: @primary-2!important;
+}
+/deep/.draging-tr td {
+    background: @primary-1!important;
+}
+
+// 下面是为了适应不同主题
+/deep/.ve-table .ve-table-container .ve-table-border-y th,
+/deep/.ve-table .ve-table-container .ve-table-border-y td {
+    border-right: 1px solid @gray-2;
+    border-bottom: 1px solid @gray-2;
+    color: @text-color!important;
+}
+/deep/.ve-table .ve-table-container .ve-table-border-x th,
+/deep/.ve-table .ve-table-container .ve-table-border-x td {
+    border-right: 1px solid @gray-2;
+    border-bottom: 1px solid @gray-2;
+    color: @text-color!important;
+}
+/deep/.ve-table .ve-table-container .ve-table-border-x th,
+/deep/.ve-table .ve-table-container .ve-table-border-y th {
+    color: @text-color-secondary!important;
+}
+/deep/.ve-table
+    .ve-table-container
+    .ve-table-content-wrapper
+    table.ve-table-content
+    thead.ve-table-header
+    tr.ve-table-header-tr
+    th.ve-table-header-th {
+    background-color: @table-header;
+}
+/deep/.ve-table.ve-table-border-around {
+    border: 1px solid @gray-2;
+}
+/deep/.ve-table
+    .ve-table-container
+    .ve-table-content-wrapper
+    table.ve-table-content
+    tbody.ve-table-body.ve-table-row-hover
+    tr.ve-table-body-tr:hover
+    td {
+    background-color: @gray-1;
+}
+/deep/.ve-table .ve-table-edit-input-container .ve-table-edit-input {
+    color: @font-gy4;
+}
+/deep/.ve-table
+    .ve-table-container
+    .ve-table-content-wrapper
+    .ve-table-selection-wrapper
+    .ve-table-selection-current
+    .ve-table-selection-border,
+/deep/.ve-table
+    .ve-table-container
+    .ve-table-content-wrapper
+    .ve-table-selection-wrapper
+    .ve-table-selection-normal-area
+    .ve-table-selection-border {
+    display: block;
+    background-color: @primary-4;
+}
+/deep/.ve-table .ve-table-edit-input-container .ve-table-edit-input {
+    border: 2px solid @primary-4;
+}
+/deep/.ve-table
+    .ve-table-container
+    .ve-table-content-wrapper
+    .ve-table-selection-wrapper
+    .ve-table-selection-normal-area-layer {
+    background-color: @primary-2;
+    opacity: 0.08;
+}
+/deep/.ve-checkbox .ve-checkbox-checked:not(.ve-checkbox-disabled) .ve-checkbox-inner {
+    background-color: @primary-color;
+    border-color: @primary-color;
+}
+/deep/.ve-checkbox-content:hover .ve-checkbox-inner {
+    border-color: @primary-color;
+}
+/deep/.ve-checkbox .ve-checkbox-indeterminate .ve-checkbox-inner:after {
+    background-color: @primary-color;
+}
+/deep/.ve-checkbox .ve-checkbox-checked:not(.ve-checkbox-disabled) .ve-checkbox-inner:after {
+    border-top: 0 !important;
+    border-left: 0 !important;
+    border-color: #fff !important;
+}
+/deep/.ve-table .ve-table-column-resizer-handler.active {
+    background-color: @primary-4;
+}
+/deep/.ve-table .ve-table-column-resizer-line {
+    border-left: 1px solid @primary-4;
+}
+/deep/.ve-loading.ve-loading-overlay {
+    z-index: @weint-table-loading-zindex;
+    background-color: #fff !important;
+    opacity: 0.6;
+}
+/deep/.ve-loading-wave-rect {
+    background-color: @primary-color!important;
+    width: 12%;
+}
+/deep/.ve-loading-spin-container {
+    margin-left: 0 !important;
+}
+
+// z-index层级
+/deep/.ve-table
+    .ve-table-container
+    .ve-table-content-wrapper
+    table.ve-table-content
+    tbody.ve-table-body
+    .ve-table-body-tr
+    .ve-table-body-td.ve-table-fixed-left {
+    z-index: @weint-table-cell-left-zindex!important;
+}
+/deep/.ve-table
+    .ve-table-container
+    .ve-table-content-wrapper
+    table.ve-table-content
+    tbody.ve-table-body
+    .ve-table-body-tr
+    .ve-table-body-td.ve-table-fixed-right {
+    z-index: @weint-table-cell-zindex!important;
+}
+/deep/.ve-table
+    .ve-table-container
+    .ve-table-content-wrapper
+    table.ve-table-content
+    thead.ve-table-header.ve-table-fixed-header
+    tr
+    th {
+    z-index: @weint-table-head-zindex!important;
+}
+/deep/.ve-table
+    .ve-table-container
+    .ve-table-content-wrapper
+    table.ve-table-content
+    thead.ve-table-header
+    .ve-table-header-tr
+    .ve-table-header-th.ve-table-fixed-left {
+    z-index: @weint-table-head-side-left-fixed-zindex!important;
+}
+/deep/.ve-table
+    .ve-table-container
+    .ve-table-content-wrapper
+    table.ve-table-content
+    thead.ve-table-header
+    .ve-table-header-tr
+    .ve-table-header-th.ve-table-fixed-right {
+    z-index: @weint-table-head-side-fixed-zindex!important;
+}

@@ -43,11 +43,11 @@ const errorHandler = (error) => {
 
 // request interceptor
 request.interceptors.request.use(config => {
-  const token = storage.get(ACCESS_TOKEN)
+  let token = JSON.parse(localStorage.getItem("token"))
   // 如果 token 存在
   // 让每个请求携带自定义 token 请根据实际情况自行修改
   if (token) {
-    config.headers['Access-Token'] = token
+    config.headers['token'] = token
   }
   return config
 }, errorHandler)
@@ -59,7 +59,7 @@ request.interceptors.response.use((response) => {
 
 const installer = {
   vm: {},
-  install (Vue) {
+  install(Vue) {
     Vue.use(VueAxios, request)
   }
 }
@@ -68,5 +68,5 @@ export default request
 
 export {
   installer as VueAxios,
-  request as axios
+  request as axios,
 }

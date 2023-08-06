@@ -2,7 +2,7 @@
   <page-header-wrapper>
     <a-alert message="客户打开平台分享的名片并同意获取地址，获取的定位将显示在地图上" type="success" />
     <a-card>
-      <el-amap :zoom="8" vid="amapDemo" style="height:680px">
+      <el-amap :zoom="24" vid="amapDemo" style="height:680px" mapStyle='fresh'>
         <el-amap-marker :key="index" v-for="(marker, index) in markers" :position="marker.position"> </el-amap-marker>
       </el-amap>
     </a-card>
@@ -12,7 +12,7 @@
 <script>
 export default {
   name: 'Map',
-  data () {
+  data() {
     const that = this
     return {
       markers: [
@@ -23,7 +23,7 @@ export default {
           position: [121.5273286, 31.21515045]
         }
       ],
-      zoom: 12,
+      zoom: 24,
       // 默认中心点
       center: [116.4, 39.9],
       // 当前地图的插件
@@ -42,8 +42,10 @@ export default {
           extensions: 'all',
           pName: 'Geolocation',
           events: {
-            init (o) {
+            init(o) {
               // o 是高德地图定位插件实例
+              console.log(333)
+              o.setMapStyle('amap://styles/darkblue')
               o.Geolocation((status, result) => {
                 console.log(result)
                 if (result && result.position) {

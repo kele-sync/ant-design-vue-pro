@@ -38,7 +38,7 @@ const user = {
       return new Promise((resolve, reject) => {
         login(userInfo).then(response => {
           const result = response.data
-          storage.set(ACCESS_TOKEN, response.data.mobileNum, 7 * 24 * 60 * 60 * 1000)
+          storage.set("token", response.data.token)
           commit('SET_TOKEN', result.token)
           resolve()
         }).catch(error => {

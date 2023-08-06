@@ -12,225 +12,230 @@ export const asyncRouterMap = [
     path: '/',
     name: 'index',
     component: BasicLayout,
-    meta: { title: 'menu.home' },
+    meta: { title: '管理平台' },
     redirect: '/user/login',
     children: [
       {
-        path: '/icp',
+        path: '/system',
         name: 'icp',
-        redirect: '/icp/main',
+        redirect: '/system/users',
         component: RouteView,
-        meta: { title: 'ICP管理', keepAlive: true, icon: bxAnaalyse, permission: ['overview'] },
+        meta: { title: '管理页面', keepAlive: true, icon: bxAnaalyse, permission: ['overview'] },
         children: [
+          // {
+          //   path: '/system/main',
+          //   name: 'main',
+          //   component: () => import('@/views/icp/Main'),
+          //   meta: { title: '总览', keepAlive: false, permission: ['overview'] }
+          // },
           {
-            path: '/icp/main',
-            name: 'main',
-            component: () => import('@/views/icp/Main'),
-            meta: { title: '平台概览', keepAlive: false, permission: ['overview'] }
-          },
-          {
-            path: '/icp/users',
+            path: '/system/users',
             name: 'users',
-            component: () => import('@/views/icp/Users'),
+            component: () => import('@/views/system/users/index.vue'),
             meta: { title: '用户管理', keepAlive: false, permission: ['overview'] }
+          }, {
+            path: '/system/dtu',
+            name: 'dtu',
+            component: () => import('@/views/system/Dtu/index.vue'),
+            meta: { title: 'DTU列表', keepAlive: false, permission: ['overview'] }
           }
 
         ]
       },
-      {
-        path: '/overview',
-        name: 'overview',
-        redirect: '/overview/companys',
-        component: RouteView,
-        meta: { title: '客户广场', keepAlive: true, icon: bxAnaalyse, permission: ['overview'] },
-        children: [
-          {
-            path: '/overview/companys',
-            name: 'companys',
-            component: () => import('@/views/overview/Companys'),
-            meta: { title: '公司黄页', keepAlive: false, permission: ['overview'] }
-          },
-          // {
-          //   path: '/overview/develop',
-          //   name: 'develop',
-          //   component: () => import('@/views/overview/Develop'),
-          //   meta: { title: '待开发客户', keepAlive: false, permission: ['overview'] }
-          // },
-          {
-            path: '/overview/client',
-            name: 'client',
-            component: () => import('@/views/overview/Clients'),
-            meta: { title: '意向客户', keepAlive: false, permission: ['overview'] }
-          },
-          {
-            path: '/overview/Partner',
-            name: 'partner',
-            component: () => import('@/views/business/Partner'),
-            meta: { title: '合作伙伴', keepAlive: false, permission: ['overview'] }
-          }
+      // {
+      //   path: '/overview',
+      //   name: 'overview',
+      //   redirect: '/overview/companys',
+      //   component: RouteView,
+      //   meta: { title: '权限管理', keepAlive: true, icon: bxAnaalyse, permission: ['overview'] },
+      //   children: [
+      //     {
+      //       path: '/overview/companys',
+      //       name: 'companys',
+      //       component: () => import('@/views/overview/Companys'),
+      //       meta: { title: '公司黄页', keepAlive: false, permission: ['overview'] }
+      //     },
+      //     // {
+      //     //   path: '/overview/develop',
+      //     //   name: 'develop',
+      //     //   component: () => import('@/views/overview/Develop'),
+      //     //   meta: { title: '待开发客户', keepAlive: false, permission: ['overview'] }
+      //     // },
+      //     {
+      //       path: '/overview/client',
+      //       name: 'client',
+      //       component: () => import('@/views/overview/Clients'),
+      //       meta: { title: '意向客户', keepAlive: false, permission: ['overview'] }
+      //     },
+      //     {
+      //       path: '/overview/Partner',
+      //       name: 'partner',
+      //       component: () => import('@/views/business/Partner'),
+      //       meta: { title: '合作伙伴', keepAlive: false, permission: ['overview'] }
+      //     }
 
-        ]
-      },
-      {
-        path: '/own',
-        name: 'own',
-        redirect: '/own/calendar',
-        component: RouteView,
-        meta: { title: '我的生意', keepAlive: true, icon: bxAnaalyse, permission: ['overview'] },
-        children: [
-          // {
-          //   path: '/own/plan',
-          //   name: 'Plan',
-          //   component: () => import('@/views/business/Plan'),
-          //   meta: { title: '工作规划', keepAlive: false, permission: ['overview'] }
-          // },
-          {
-            path: '/own/calendar',
-            name: 'Calendar',
-            component: () => import('@/views/business/Calendar'),
-            meta: { title: '工作安排', keepAlive: false, permission: ['overview'] }
-          },
-          {
-            path: '/own/card',
-            name: 'card',
-            component: () => import('@/views/business/Card'),
-            meta: { title: '电子名片', keepAlive: false, permission: ['overview'] }
-          }
-          // {
-          //   path: '/own/partner',
-          //   name: 'partner',
-          //   component: () => import('@/views/business/Partner'),
-          //   meta: { title: '合作伙伴', keepAlive: false, permission: ['overview'] }
-          // }
-          // {
-          //   path: '/own/board',
-          //   name: 'board',
-          //   component: () => import('@/views/overview/Clients'),
-          //   meta: { title: '站内信', keepAlive: false, permission: ['overview'] }
-          // }
+      //   ]
+      // },
+      // {
+      //   path: '/own',
+      //   name: 'own',
+      //   redirect: '/own/calendar',
+      //   component: RouteView,
+      //   meta: { title: '我的生意', keepAlive: true, icon: bxAnaalyse, permission: ['overview'] },
+      //   children: [
+      //     // {
+      //     //   path: '/own/plan',
+      //     //   name: 'Plan',
+      //     //   component: () => import('@/views/business/Plan'),
+      //     //   meta: { title: '工作规划', keepAlive: false, permission: ['overview'] }
+      //     // },
+      //     {
+      //       path: '/own/calendar',
+      //       name: 'Calendar',
+      //       component: () => import('@/views/business/Calendar'),
+      //       meta: { title: '工作安排', keepAlive: false, permission: ['overview'] }
+      //     },
+      //     {
+      //       path: '/own/card',
+      //       name: 'card',
+      //       component: () => import('@/views/business/Card'),
+      //       meta: { title: '电子名片', keepAlive: false, permission: ['overview'] }
+      //     }
+      //     // {
+      //     //   path: '/own/partner',
+      //     //   name: 'partner',
+      //     //   component: () => import('@/views/business/Partner'),
+      //     //   meta: { title: '合作伙伴', keepAlive: false, permission: ['overview'] }
+      //     // }
+      //     // {
+      //     //   path: '/own/board',
+      //     //   name: 'board',
+      //     //   component: () => import('@/views/overview/Clients'),
+      //     //   meta: { title: '站内信', keepAlive: false, permission: ['overview'] }
+      //     // }
 
-        ]
-      },
-      {
-        path: '/analyze',
-        name: 'analyze',
-        redirect: '/analyze/map',
-        component: RouteView,
-        meta: { title: '市场分析', keepAlive: true, icon: bxAnaalyse, permission: ['overview'] },
-        children: [
-          {
-            path: '/analyze/map',
-            name: 'map',
-            component: () => import('@/views/analyze/Map'),
-            meta: { title: '客户地图', keepAlive: false, permission: ['overview'] }
-          },
-          {
-            path: '/analyze/chart',
-            name: 'chart',
-            component: () => import('@/views/analyze/Chart'),
-            meta: { title: '行业曲线', keepAlive: false, permission: ['overview'] }
-          },
-          {
-            path: '/analyze/feedback',
-            name: 'feedback',
-            component: () => import('@/views/analyze/Feedback'),
-            meta: { title: '名片反馈', keepAlive: false, permission: ['overview'] }
-          }
+      //   ]
+      // },
+      // {
+      //   path: '/analyze',
+      //   name: 'analyze',
+      //   redirect: '/analyze/map',
+      //   component: RouteView,
+      //   meta: { title: '市场分析', keepAlive: true, icon: bxAnaalyse, permission: ['overview'] },
+      //   children: [
+      //     {
+      //       path: '/analyze/map',
+      //       name: 'map',
+      //       component: () => import('@/views/analyze/Map'),
+      //       meta: { title: '客户地图', keepAlive: false, permission: ['overview'] }
+      //     },
+      //     {
+      //       path: '/analyze/chart',
+      //       name: 'chart',
+      //       component: () => import('@/views/analyze/Chart'),
+      //       meta: { title: '行业曲线', keepAlive: false, permission: ['overview'] }
+      //     },
+      //     {
+      //       path: '/analyze/feedback',
+      //       name: 'feedback',
+      //       component: () => import('@/views/analyze/Feedback'),
+      //       meta: { title: '名片反馈', keepAlive: false, permission: ['overview'] }
+      //     }
 
-        ]
-      },
-      {
-        path: '/tools',
-        name: 'tools',
-        redirect: '/tools/code',
-        component: RouteView,
-        meta: { title: '小工具', keepAlive: true, icon: bxAnaalyse, permission: ['overview'] },
-        children: [
-          // {
-          //   path: '/own/needs',
-          //   name: 'needs',
-          //   component: () => import('@/views/business/Needs'),
-          //   meta: { title: '活码制作', keepAlive: false, permission: ['overview'] }
-          // },
-          {
-            path: '/tools/code',
-            name: 'salesman',
-            component: () => import('@/views/tools/Code'),
-            meta: { title: '二维码制作', keepAlive: false, permission: ['overview'] }
-          },
-          {
-            path: '/tools/code',
-            name: 'salesman',
-            component: () => import('@/views/tools/Code'),
-            meta: { title: '推广返利', keepAlive: false, permission: ['overview'] }
-          }
-        ]
-      },
-      {
-        path: '/account',
-        component: RouteView,
-        redirect: '/account/center',
-        name: 'account',
-        meta: { title: '个人设置', icon: 'user', keepAlive: true, permission: ['user'] },
-        children: [
-          {
-            path: '/account/center',
-            name: 'center',
-            component: () => import('@/views/account/center'),
-            meta: { title: 'menu.account.center', keepAlive: true, permission: ['user'] }
-          },
-          {
-            path: '/account/settings',
-            name: 'settings',
-            component: () => import('@/views/account/settings/Index'),
-            meta: { title: 'menu.account.settings', hideHeader: true, permission: ['user'] },
-            redirect: '/account/settings/basic',
-            hideChildrenInMenu: true,
-            children: [
-              {
-                path: '/account/settings/basic',
-                name: 'BasicSettings',
-                component: () => import('@/views/account/settings/BasicSetting'),
-                meta: { title: 'account.settings.menuMap.basic', hidden: true, permission: ['user'] }
-              },
-              {
-                path: '/account/settings/security',
-                name: 'SecuritySettings',
-                component: () => import('@/views/account/settings/Security'),
-                meta: {
-                  title: 'account.settings.menuMap.security',
-                  hidden: true,
-                  keepAlive: true,
-                  permission: ['user']
-                }
-              },
-              {
-                path: '/account/settings/custom',
-                name: 'CustomSettings',
-                component: () => import('@/views/account/settings/Custom'),
-                meta: { title: 'account.settings.menuMap.custom', hidden: true, keepAlive: true, permission: ['user'] }
-              },
-              {
-                path: '/account/settings/binding',
-                name: 'BindingSettings',
-                component: () => import('@/views/account/settings/Binding'),
-                meta: { title: 'account.settings.menuMap.binding', hidden: true, keepAlive: true, permission: ['user'] }
-              },
-              {
-                path: '/account/settings/notification',
-                name: 'NotificationSettings',
-                component: () => import('@/views/account/settings/Notification'),
-                meta: {
-                  title: 'account.settings.menuMap.notification',
-                  hidden: true,
-                  keepAlive: true,
-                  permission: ['user']
-                }
-              }
-            ]
-          }
-        ]
-      }
+      //   ]
+      // },
+      // {
+      //   path: '/tools',
+      //   name: 'tools',
+      //   redirect: '/tools/code',
+      //   component: RouteView,
+      //   meta: { title: '小工具', keepAlive: true, icon: bxAnaalyse, permission: ['overview'] },
+      //   children: [
+      //     // {
+      //     //   path: '/own/needs',
+      //     //   name: 'needs',
+      //     //   component: () => import('@/views/business/Needs'),
+      //     //   meta: { title: '活码制作', keepAlive: false, permission: ['overview'] }
+      //     // },
+      //     {
+      //       path: '/tools/code',
+      //       name: 'salesman',
+      //       component: () => import('@/views/tools/Code'),
+      //       meta: { title: '二维码制作', keepAlive: false, permission: ['overview'] }
+      //     },
+      //     {
+      //       path: '/tools/code',
+      //       name: 'salesman',
+      //       component: () => import('@/views/tools/Code'),
+      //       meta: { title: '推广返利', keepAlive: false, permission: ['overview'] }
+      //     }
+      //   ]
+      // },
+      // {
+      //   path: '/account',
+      //   component: RouteView,
+      //   redirect: '/account/center',
+      //   name: 'account',
+      //   meta: { title: '个人设置', icon: 'user', keepAlive: true, permission: ['user'] },
+      //   children: [
+      //     {
+      //       path: '/account/center',
+      //       name: 'center',
+      //       component: () => import('@/views/account/center'),
+      //       meta: { title: 'menu.account.center', keepAlive: true, permission: ['user'] }
+      //     },
+      //     {
+      //       path: '/account/settings',
+      //       name: 'settings',
+      //       component: () => import('@/views/account/settings/Index'),
+      //       meta: { title: 'menu.account.settings', hideHeader: true, permission: ['user'] },
+      //       redirect: '/account/settings/basic',
+      //       hideChildrenInMenu: true,
+      //       children: [
+      //         {
+      //           path: '/account/settings/basic',
+      //           name: 'BasicSettings',
+      //           component: () => import('@/views/account/settings/BasicSetting'),
+      //           meta: { title: 'account.settings.menuMap.basic', hidden: true, permission: ['user'] }
+      //         },
+      //         {
+      //           path: '/account/settings/security',
+      //           name: 'SecuritySettings',
+      //           component: () => import('@/views/account/settings/Security'),
+      //           meta: {
+      //             title: 'account.settings.menuMap.security',
+      //             hidden: true,
+      //             keepAlive: true,
+      //             permission: ['user']
+      //           }
+      //         },
+      //         {
+      //           path: '/account/settings/custom',
+      //           name: 'CustomSettings',
+      //           component: () => import('@/views/account/settings/Custom'),
+      //           meta: { title: 'account.settings.menuMap.custom', hidden: true, keepAlive: true, permission: ['user'] }
+      //         },
+      //         {
+      //           path: '/account/settings/binding',
+      //           name: 'BindingSettings',
+      //           component: () => import('@/views/account/settings/Binding'),
+      //           meta: { title: 'account.settings.menuMap.binding', hidden: true, keepAlive: true, permission: ['user'] }
+      //         },
+      //         {
+      //           path: '/account/settings/notification',
+      //           name: 'NotificationSettings',
+      //           component: () => import('@/views/account/settings/Notification'),
+      //           meta: {
+      //             title: 'account.settings.menuMap.notification',
+      //             hidden: true,
+      //             keepAlive: true,
+      //             permission: ['user']
+      //           }
+      //         }
+      //       ]
+      //     }
+      //   ]
+      // }
       // dashboard
       // {
       //   path: '/dashboard',
@@ -547,6 +552,12 @@ export const asyncRouterMap = [
       }
       */
     ]
+  },
+  {
+    path: "/map",
+    name: "map",
+    component: () => import('@/views/map/index.vue')
+
   },
   {
     path: '*',
