@@ -42,7 +42,27 @@ export default {
       Curd,
     };
   },
-
+  methods: {
+    ["DELETE"](row) {
+      console.log(row);
+      this.$confirm({
+        title: "提示",
+        content: "是否确认删除",
+        onOk: () => {
+          this.apis.delete({
+            accountId: row.id
+          }).then(({ data }) => {
+            if (data.code === 0) {
+              this.refreshTableData();
+            }
+          });
+        },
+        onCancel: () => {
+          this.$message.info("已取消");
+        },
+      });
+    },
+  },
 };
 </script>
 

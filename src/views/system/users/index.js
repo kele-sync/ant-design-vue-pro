@@ -87,7 +87,7 @@ export default {
     return {
       add: (data) => request(`/api/account/save`, "post", data),
       list: (data) => request(`/api/account/queryPage`, "post", data),
-      delete: (data) => request(`/api/dtu/removeDtu`, "post", data),
+      delete: (data) => request(`/api/account/remove`, "post", data),
       resetPassword: (data) => request(`/api/sysUser/restPassword`, 'post', data, { showSuccess: true })
     };
   },
