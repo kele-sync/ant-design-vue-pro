@@ -39,9 +39,7 @@ export default {
   },
   getDefaultDialogForm: () => {
     return {
-      checkedList: [],
-      status: 1,
-      roleIds: []
+
     };
   },
   getDialogFormSet: function () {
@@ -51,6 +49,7 @@ export default {
         key: "devCode",
         component: ComponentSet.INPUT,
         required: true,
+
       },
 
       {
@@ -58,24 +57,24 @@ export default {
         key: "netState",
         component: ComponentSet.SELECT,
         options: this.$w.dict.enableStatusMapper,
-        required: true,
+        required: true, hidden: this.activeOperDialogInfo.Oper == "ADD"
       },
 
       {
         label: "在线时间",
         key: "onlineTime",
-        component: ComponentSet.TIMEPICKER,
+        component: ComponentSet.TIMEPICKER, hidden: this.activeOperDialogInfo.Oper == "ADD"
       },
       {
         label: "simImsi",
         key: "simImsi",
-        component: ComponentSet.INPUT,
+        component: ComponentSet.INPUT, hidden: this.activeOperDialogInfo.Oper == "ADD"
 
       },
       {
         label: "simImei",
         key: "simImei",
-        component: ComponentSet.INPUT,
+        component: ComponentSet.INPUT, hidden: this.activeOperDialogInfo.Oper == "ADD"
 
       },
 
@@ -115,7 +114,7 @@ export default {
         label: '操作',
         scopedSlots: { customRender: 'action' },
         flex: 'left',
-        width: 180
+        width: 210
       },
     ];
   },
@@ -125,7 +124,9 @@ export default {
   getApis: function () {
     return {
       list: (data) => request(`/api/dtu/queryPage`, "post", data),
+      add: (data) => request(`/api/dtu/addDtuForCustomer`, "post", data),
       delete: (data) => request(`/api/dtu/removeDtu`, "post", data),
+      queryParamsValueByDtu: (data) => request(`/api/customer/queryParamsValueByDtu`, "post", data),
       resetPassword: (data) => request(`/api/sysUser/restPassword`, 'post', data, { showSuccess: true })
     };
   },

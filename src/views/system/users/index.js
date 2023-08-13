@@ -47,36 +47,10 @@ export default {
   getDialogFormSet: function () {
     return [
       {
-        label: "devCode",
-        key: "devCode",
+        label: "账号",
+        key: "account",
         component: ComponentSet.INPUT,
         required: true,
-      },
-
-      {
-        label: "状态",
-        key: "netState",
-        component: ComponentSet.SELECT,
-        options: this.$w.dict.enableStatusMapper,
-        required: true,
-      },
-
-      {
-        label: "在线时间",
-        key: "onlineTime",
-        component: ComponentSet.TIMEPICKER,
-      },
-      {
-        label: "simImsi",
-        key: "simImsi",
-        component: ComponentSet.INPUT,
-
-      },
-      {
-        label: "simImei",
-        key: "simImei",
-        component: ComponentSet.INPUT,
-
       },
 
     ];
@@ -111,6 +85,7 @@ export default {
   },
   getApis: function () {
     return {
+      add: (data) => request(`/api/account/save`, "post", data),
       list: (data) => request(`/api/account/queryPage`, "post", data),
       delete: (data) => request(`/api/dtu/removeDtu`, "post", data),
       resetPassword: (data) => request(`/api/sysUser/restPassword`, 'post', data, { showSuccess: true })

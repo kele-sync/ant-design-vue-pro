@@ -29,15 +29,16 @@ export const asyncRouterMap = [
           //   meta: { title: '总览', keepAlive: false, permission: ['overview'] }
           // },
           {
-            path: '/system/users',
-            name: 'users',
-            component: () => import('@/views/system/users/index.vue'),
-            meta: { title: '用户管理', keepAlive: false, permission: ['overview'] }
-          }, {
             path: '/system/dtu',
             name: 'dtu',
             component: () => import('@/views/system/Dtu/index.vue'),
             meta: { title: 'DTU列表', keepAlive: false, permission: ['overview'] }
+          },
+          {
+            path: '/system/users',
+            name: 'users',
+            component: () => import('@/views/system/users/index.vue'),
+            meta: { title: '用户管理', keepAlive: false, permission: ['overview'] }
           }
 
         ]

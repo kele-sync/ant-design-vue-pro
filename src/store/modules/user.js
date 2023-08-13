@@ -34,11 +34,12 @@ const user = {
 
   actions: {
     // 登录
-    Login ({ commit }, userInfo) {
+    Login({ commit }, userInfo) {
       return new Promise((resolve, reject) => {
         login(userInfo).then(response => {
           const result = response.data
           storage.set("token", response.data.token)
+          storage.set("belongCustomer", response.data.belongCustomer)
           commit('SET_TOKEN', result.token)
           resolve()
         }).catch(error => {
@@ -48,7 +49,7 @@ const user = {
     },
 
     // 获取用户信息
-    GetInfo ({ commit }) {
+    GetInfo({ commit }) {
       return new Promise((resolve, reject) => {
         getInfo().then(response => {
           const result = response.result
@@ -80,7 +81,7 @@ const user = {
     },
 
     // 登出
-    Logout ({ commit, state }) {
+    Logout({ commit, state }) {
       return new Promise((resolve) => {
         logout(state.token).then(() => {
           commit('SET_TOKEN', '')

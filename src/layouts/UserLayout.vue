@@ -95,7 +95,7 @@ export default {
     }
 
     .user-layout-content {
-      padding: 20% 0 24px;
+      padding: 250px 0 24px;
 
       .top {
         text-align: center;

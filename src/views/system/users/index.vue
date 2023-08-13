@@ -11,7 +11,7 @@
         :addSerial="true" :selectedRows.sync="selectedRows" @onPaginationChange="refreshTableData">
         <template slot="action" slot-scope="{ record }">
           <we-operation :menus="[
-            ComponentOpr.DETAIL,
+            // ComponentOpr.DETAIL,
             ComponentOpr.EDIT,
             ComponentOpr.DELETE,
           ]" @onOperation="(data) => handleOperation(data, record)">

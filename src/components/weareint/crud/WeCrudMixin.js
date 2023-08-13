@@ -271,8 +271,8 @@ export default {
           this.confirmLoading = true;
           this.apis
             .add(params)
-            .then((result) => {
-              if (result.code === 20000) {
+            .then(({ data }) => {
+              if (data.code === 0) {
                 this.closeDialog();
                 this.refreshTableData();
               }
