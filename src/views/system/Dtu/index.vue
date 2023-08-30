@@ -23,10 +23,10 @@
 
       </we-table>
 
-      <we-dialog :width="1300" :dialogInfo="activeOperDialogInfo" @onConfirm="onDialogConfirm" @onClose="closeDialog"
+      <we-dialog :width="500" :dialogInfo="activeOperDialogInfo" @onConfirm="onDialogConfirm" @onClose="closeDialog"
         :confirmLoading="confirmLoading">
         <we-form :formList="dialogFormSetting" :dialogForm="dialogForm" :isInline="true" :oper="activeOperDialogInfo.Oper"
-          ref="weForm" :colNum="3"></we-form>
+          ref="weForm" :colNum="1"></we-form>
         <we-table v-if="activeOperDialogInfo.Oper == 'DETAIL'" :columns="detailColumn" :tableData="detaildata"
           :selectedRows="[]"></we-table>
       </we-dialog>
@@ -76,6 +76,9 @@ export default {
               if (data.code === 0) {
                 this.closeDialog();
                 this.refreshTableData();
+              } else {
+                console.log(333);
+                this.$message.error(data.msg)
               }
             })
             .finally(() => {

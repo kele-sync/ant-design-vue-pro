@@ -35,13 +35,7 @@ export default {
       return [
         { name: "设备编号", value: this.msg.devCode },
         { name: "电池状态", value: this.msg.netState ? "在线" : "离线" },
-        { name: "simIccid", value: this.msg.simIccid },
-        { name: "simImei", value: this.msg.simImei },
-        { name: "simImsi", value: this.msg.simImsi },
-        { name: "电池组总电压", value: this.msg.simImsi },
-        { name: "总有功电量H", value: this.msg.simImsi },
-        { name: "有功功率H", value: this.msg.simImsi },
-        { name: "有功功率H", value: this.msg.simImsi },
+
       ]
     }
   },
@@ -61,6 +55,40 @@ export default {
     getInfo() {
       this.$http.post("/api/customer/queryParamsValueByDtu", {
         "devCode": this.msg.devCode
+      }).then(({ data }) => {
+        console.log(data);
+        if (data && data.length) {
+          data.forEach(item => {
+            console.log(item.paramId);
+            if (item.paramId == "1816") {
+              this.tableData.push({
+                name: "电池组总电压", value: item.value
+              })
+              // this.$set(this.msg, "zdy", item.value)
+            }
+            if (item.paramId == "1867") {
+              this.tableData.push({
+                name: "总有功电量H", value: item.value
+              })
+              // this.$set(this.msg, "zdl", item.value)
+            }
+            if (item.paramId == "1869") {
+              this.tableData.push({
+                name: "有功功率H", value: item.value
+              })
+              // this.$set(this.msg, "gl", item.value)
+            }
+            if (item.paramId == "1871") {
+              this.tableData.push({
+                name: "电流H", value: item.value
+              })
+              // this.$set(this.msg, "dl", item.value)
+            }
+          })
+        }
+        this.tableData.push(...[{ name: "simIccid", value: this.msg.simIccid },
+        { name: "simImei", value: this.msg.simImei },
+        { name: "simImsi", value: this.msg.simImsi },])
       })
     }
   },

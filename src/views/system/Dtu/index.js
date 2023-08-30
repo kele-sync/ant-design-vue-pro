@@ -15,13 +15,13 @@ export default {
     return [
 
       {
-        label: "用户状态",
+        label: "设备状态",
         key: "netState",
         component: ComponentSet.SELECT,
         options: enableStatusMapper,
       },
       {
-        label: "devCode",
+        label: "设备编码",
         key: "devCode",
         component: ComponentSet.INPUT,
       },
@@ -45,7 +45,7 @@ export default {
   getDialogFormSet: function () {
     return [
       {
-        label: "devCode",
+        label: "设备编码",
         key: "devCode",
         component: ComponentSet.INPUT,
         required: true,

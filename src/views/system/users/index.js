@@ -15,26 +15,25 @@ export default {
     return [
 
       {
-        label: "用户状态",
-        key: "netState",
-        component: ComponentSet.SELECT,
-        options: enableStatusMapper,
-      },
-      {
-        label: "devCode",
-        key: "devCode",
+        label: "账号",
+        key: "account",
         component: ComponentSet.INPUT,
       },
-      {
-        label: "simImsi",
-        key: "simImsi",
-        component: ComponentSet.INPUT,
-      },
-      {
-        label: "simImei",
-        key: "simImei",
-        component: ComponentSet.INPUT,
-      },
+      // {
+      //   label: "devCode",
+      //   key: "devCode",
+      //   component: ComponentSet.INPUT,
+      // },
+      // {
+      //   label: "simImsi",
+      //   key: "simImsi",
+      //   component: ComponentSet.INPUT,
+      // },
+      // {
+      //   label: "simImei",
+      //   key: "simImei",
+      //   component: ComponentSet.INPUT,
+      // },
     ];
   },
   getDefaultDialogForm: () => {
