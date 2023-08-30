@@ -64,16 +64,14 @@ export default {
   },
   methods: {
     ["confirm" + ComponentOpr.ADD](params) {
-      let formatParams = {
-        "belongCustomer": storage.get("belongCustomer"), ...params
-      }
+
       console.log(this.apis);
       this.$refs.weForm.validateState((res) => {
         console.log(res);
         if (res) {
           this.confirmLoading = true;
           this.apis
-            .add(formatParams)
+            .add(params)
             .then(({ data }) => {
               if (data.code === 0) {
                 this.closeDialog();

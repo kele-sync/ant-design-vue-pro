@@ -83,7 +83,7 @@ export default {
   getTableColumnSet: function () {
     return [
       {
-        label: "devCode",
+        label: "设备编码",
         key: "devCode",
       },
       {
@@ -124,7 +124,7 @@ export default {
   getApis: function () {
     return {
       list: (data) => request(`/api/dtu/queryPage`, "post", data),
-      add: (data) => request(`/api/dtu/addDtuForCustomer`, "post", data),
+      add: (data) => request(`/api/dtu/addDtu`, "post", data),
       delete: (data) => request(`/api/dtu/removeDtu`, "post", data),
       queryParamsValueByDtu: (data) => request(`/api/customer/queryParamsValueByDtu`, "post", data),
       resetPassword: (data) => request(`/api/sysUser/restPassword`, 'post', data, { showSuccess: true })

@@ -145,7 +145,7 @@ export default {
       })
     },
     getDtuGroup() {
-      this.$http.post('/api/business/queryTerminalParams', {
+      this.$http.post('/api/dtu/queryDtuGroupByNetState', {
         "protocolId": 0,
         "type": 0
       }).then(({ data }) => {

@@ -12,7 +12,7 @@
         <template slot="action" slot-scope="{ record }">
           <we-operation :menus="[
             // ComponentOpr.DETAIL,
-            ComponentOpr.EDIT,
+            // ComponentOpr.EDIT,
             ComponentOpr.DELETE,
           ]" @onOperation="(data) => handleOperation(data, record)">
           </we-operation>

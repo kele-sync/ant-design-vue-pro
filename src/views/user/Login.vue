@@ -145,7 +145,7 @@ export default {
       validateFields(validateFieldsKey, { force: true }, (err, values) => {
         if (!err) {
           console.log('login form', values)
-          const loginParams = { ...values }
+          const loginParams = { ...values, "customerCode": "wxszc" }
           Login(loginParams)
             .then(res => this.loginSuccess(res))
             .catch(err => this.requestFailed(err))

@@ -38,6 +38,10 @@ export default {
         { name: "simIccid", value: this.msg.simIccid },
         { name: "simImei", value: this.msg.simImei },
         { name: "simImsi", value: this.msg.simImsi },
+        { name: "电池组总电压", value: this.msg.simImsi },
+        { name: "总有功电量H", value: this.msg.simImsi },
+        { name: "有功功率H", value: this.msg.simImsi },
+        { name: "有功功率H", value: this.msg.simImsi },
       ]
     }
   },
@@ -51,6 +55,14 @@ export default {
     });
     // 将marker添加到地图上
     this.$parent.$amap.add(marker);
+    this.getInfo()
+  },
+  methods: {
+    getInfo() {
+      this.$http.post("/api/customer/queryParamsValueByDtu", {
+        "devCode": this.msg.devCode
+      })
+    }
   },
   destroyed() {
     // 在组件销毁前，可以进行清理工作，例如移除marker
